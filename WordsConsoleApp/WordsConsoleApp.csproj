@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Labb 4\WordLibrary.csproj">
+      <Project>{ab88cb65-b17c-4775-8710-ea0670dacb9a}</Project>
+      <Name>WordLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

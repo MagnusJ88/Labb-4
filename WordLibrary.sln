@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordLibrary", "Labb 4\WordLibrary.csproj", "{AB88CB65-B17C-4775-8710-EA0670DACB9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsConsoleApp", "WordsConsoleApp\WordsConsoleApp.csproj", "{55D98DC9-C813-4DF3-BF54-7E3FEB253FB3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AB88CB65-B17C-4775-8710-EA0670DACB9A} = {AB88CB65-B17C-4775-8710-EA0670DACB9A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
