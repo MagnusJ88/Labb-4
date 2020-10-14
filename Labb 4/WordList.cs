@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace WordLibrary
@@ -18,21 +19,28 @@ namespace WordLibrary
             Directory.CreateDirectory(listFolder);
 
             var listName = Path.Combine(listFolder, name);
-            File.Create(listName); //filändelse?
-            Add();
+
+            if (!File.Exists(listName + ".dat"))
+            {
+                foreach (var language in languages)
+                {
+                    File.AppendAllText(listName.ToLower() + ".dat", language.ToLower() + ";");
+                }
+            }
         }
         public static string[] GetLists()
         {
             //Returnerar array med namn på alla listor som finns lagrade(utan filändelsen).
-            /*DirectoryInfo d = new DirectoryInfo(@" filsökvägen! ");
-            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
-            string str = "";
-            foreach(FileInfo file in Files )
+            DirectoryInfo listFolder = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft");
+            FileInfo[] Files = listFolder.GetFiles("*.dat");
+            string[] allLanguages = new string[Files.Length];
+            for (int i = 0; i < Files.Length; i++)
             {
-            str = str + ", " + file.Name;
-            }*/
+                allLanguages[i] = Path.GetFileNameWithoutExtension(Files[i].Name);
+            }
+            return allLanguages;
         }
-        public static WordList LoadList(string name)
+        /*public static WordList LoadList(string name)
         {
             //Laddar in ordlistan(name anges utan filändelse) och returnerar som WordList. 
         }
@@ -40,26 +48,21 @@ namespace WordLibrary
         {
             //Sparar listan till en fil med samma namn som listan och filändelse .dat 
             //Joina en string med Name + ".dat" och skapa med filestream?
-        }
+        }*/
         public void Add(params string[] translations)
         {
             //Lägger till ord i listan.Kasta ArgumentException om det är fel antal translations. 
-            // Lägger till ord via en loop?
 
-            string[] knas = new string[Languages.Length];
-            for (int i = 0; i < Languages.Length; i++)
-            {
-                //skriva till en viss fil...
-            }
-        }
+
+        }/*
         public bool Remove(int translation, string word)
         {
             //translation motsvarar index i Languages. Sök igenom språket och ta bort ordet. 
-        }
+        }        
         public int Count()
         {
             //Räknar och returnerar antal ord i listan. 
-            //Foreach? 
+
         }
         public void List(int sortByTranslation, Action<string[]> showTranslations)
         {
@@ -74,6 +77,6 @@ namespace WordLibrary
 
             //FromLanguage
             //ToLanguage
-        }
+        }*/
     }
 }
