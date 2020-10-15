@@ -26,14 +26,28 @@ namespace WordsConsoleApp
                                 Console.WriteLine(list);
                             }
                         }
-                        else Console.WriteLine("There are no lists available");
+                        else Console.WriteLine("There are no lists available!");
                         break;
                     case "-new":
-                        new WordList(args[1], args.Skip(2).ToArray());
+                        WordList newWordList = new WordList(args[1], args.Skip(2).ToArray());
+                        Console.WriteLine($"Input words, press enter to break.");
+                        newWordList.Add(Console.ReadLine());
+
+
+                        Console.WriteLine("Do you wish to save? <y/n> ");
+                        string yesNo = Console.ReadLine();
+                        switch (yesNo.ToLower())
+                        {
+                            case "y":
+                                newWordList.Save();
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case "-add":
-
-
+                        //testAdd();
+                        
                         break;
                     case "-remove":
                         //Remove();
