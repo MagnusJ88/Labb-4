@@ -30,9 +30,21 @@ namespace WordsConsoleApp
                         break;
                     case "-new":
                         WordList newWordList = new WordList(args[1], args.Skip(2).ToArray());
-                        Console.WriteLine($"Input words, press enter to break.");
-                        newWordList.Add(Console.ReadLine());
-
+                        Console.WriteLine($"Input one word at a time, press enter to break.");
+                        bool cont = true;
+                        string temp;
+                        while (cont)
+                        {
+                            temp = Console.ReadLine();
+                            if (temp == "")
+                            {
+                                cont = false;
+                            }
+                            else
+                            {
+                                newWordList.Add(temp);
+                            }
+                        }
 
                         Console.WriteLine("Do you wish to save? <y/n> ");
                         string yesNo = Console.ReadLine();

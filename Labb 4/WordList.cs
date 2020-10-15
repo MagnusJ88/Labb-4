@@ -52,7 +52,10 @@ namespace WordLibrary
                 File.AppendAllText(listName.ToLower() + ".dat", "\n");
                 foreach (Word word in Words)
                 {
-                    File.AppendAllText(listName.ToLower() + ".dat", word.ToString().ToLower() + ";");
+                    foreach (var temp in word.Translations)
+                    {
+                        File.AppendAllText(listName.ToLower() + ".dat", temp.ToLower() + ";");
+                    }
                 }
             }
         }
@@ -63,8 +66,16 @@ namespace WordLibrary
             {
                 words.Add(new Word(translations));
             }*/
-
-            Words.Add(new Word(translations));
+                Words.Add(new Word(translations));
+            /*
+            if (translations.Length % Languages.Length == 0)
+            {
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+            */
 
             //using (StreamWriter outputFile = new StreamWriter(Path.Combine(specificFolder, Name + ".dat"), true))
 
@@ -78,19 +89,19 @@ namespace WordLibrary
             //Räknar och returnerar antal ord i listan. 
             return Words.Count;
         }
-      /*  public void List(int sortByTranslation, Action<string[]> showTranslations)
-        {
-            //sortByTranslation = Vilket språk listan ska sorteras på.
-            //showTranslations = Callback som anropas för varje ord i listan.
+        /*  public void List(int sortByTranslation, Action<string[]> showTranslations)
+          {
+              //sortByTranslation = Vilket språk listan ska sorteras på.
+              //showTranslations = Callback som anropas för varje ord i listan.
 
-        }
-        public Word GetWordToPractice()
-        {
-            //Returnerar slumpmässigt Word från listan, med slumpmässigt valda
-            //FromLanguage och ToLanguage(dock inte samma). 
+          }
+          public Word GetWordToPractice()
+          {
+              //Returnerar slumpmässigt Word från listan, med slumpmässigt valda
+              //FromLanguage och ToLanguage(dock inte samma). 
 
-            //FromLanguage
-            //ToLanguage
-        }*/
+              //FromLanguage
+              //ToLanguage
+          }*/
     }
 }
