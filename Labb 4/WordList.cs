@@ -56,6 +56,8 @@ namespace WordLibrary
                     {
                         File.AppendAllText(listName.ToLower() + ".dat", temp.ToLower() + ";");
                     }
+                    File.AppendAllText(listName.ToLower() + ".dat", "\n");
+
                 }
             }
         }

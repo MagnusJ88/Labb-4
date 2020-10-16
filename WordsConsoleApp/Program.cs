@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using WordLibrary;
 
 namespace WordsConsoleApp
@@ -30,11 +29,13 @@ namespace WordsConsoleApp
                         break;
                     case "-new":
                         WordList newWordList = new WordList(args[1], args.Skip(2).ToArray());
-                        Console.WriteLine($"Input one word at a time, press enter to break.");
+
                         bool cont = true;
+                        string[] tempArr = new string[newWordList.Languages.Length];
                         string temp;
                         while (cont)
                         {
+                            Console.WriteLine($"Input a word in {newWordList.Languages[0]}");
                             temp = Console.ReadLine();
                             if (temp == "")
                             {
@@ -42,8 +43,14 @@ namespace WordsConsoleApp
                             }
                             else
                             {
-                                newWordList.Add(temp);
+                                tempArr[0] = temp;
+                                for (int i = 1; i < newWordList.Languages.Length; i++)
+                                {
+                                    Console.WriteLine($"Input a word in {newWordList.Languages[i]}");
+                                    tempArr[i] = Console.ReadLine();
+                                }
                             }
+                            newWordList.Add(tempArr);
                         }
 
                         Console.WriteLine("Do you wish to save? <y/n> ");
@@ -59,7 +66,7 @@ namespace WordsConsoleApp
                         break;
                     case "-add":
                         //testAdd();
-                        
+
                         break;
                     case "-remove":
                         //Remove();
