@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace WordLibrary
 {
@@ -20,19 +21,32 @@ namespace WordLibrary
             //Returnerar array med namn på alla listor som finns lagrade(utan filändelsen).
             DirectoryInfo listFolder = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft");
             FileInfo[] Files = listFolder.GetFiles("*.dat");
-            string[] allLanguages = new string[Files.Length];
+            string[] allFiles = new string[Files.Length];
             for (int i = 0; i < Files.Length; i++)
             {
-                allLanguages[i] = Path.GetFileNameWithoutExtension(Files[i].Name);
+                allFiles[i] = Path.GetFileNameWithoutExtension(Files[i].Name);
             }
-            return allLanguages;
+            return allFiles;
         }
-        /*public static WordList LoadList(string name)
+        public static WordList LoadList(string name)
         {
             //Laddar in ordlistan(name anges utan filändelse) och returnerar som WordList. 
-            läser in filen från path.
-            sätter Name och Languages och matar in till words alla översättningar.
-        }*/
+            //läser in filen från path.
+            //sätter Name och Languages och matar in till words alla översättningar.
+
+            var bös = File.ReadLines(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft\\" + name + ".dat").First();
+            string[] languages = bös.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            WordList newWordList = new WordList(name, languages);
+
+            string[] temp = File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft\\" + name + ".dat").Skip(1).ToArray();
+
+            foreach (var word in temp)
+            {
+                newWordList.Add(word.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            return newWordList;
+        }
         public void Save()
         {
             //Sparar listan till en fil med samma namn som listan och filändelse .dat 
@@ -49,38 +63,33 @@ namespace WordLibrary
                 {
                     File.AppendAllText(listName.ToLower() + ".dat", language.ToLower() + ";");
                 }
-                File.AppendAllText(listName.ToLower() + ".dat", "\n");
                 foreach (Word word in Words)
                 {
-                    foreach (var temp in word.Translations)
+                    File.AppendAllText(listName.ToLower() + ".dat", Environment.NewLine);
+                    foreach (var translation in word.Translations)
                     {
-                        File.AppendAllText(listName.ToLower() + ".dat", temp.ToLower() + ";");
+                        File.AppendAllText(listName.ToLower() + ".dat", translation.ToLower() + ";");
                     }
-                    File.AppendAllText(listName.ToLower() + ".dat", "\n");
-
                 }
             }
+            else
+            {
+
+            }
+
         }
         public void Add(params string[] translations)
         {
             //Lägger till ord i listan.Kasta ArgumentException om det är fel antal translations. 
-            /*if (translations.Length % Languages.Length == 0)
+            if (translations.Length == Languages.Length)
             {
-                words.Add(new Word(translations));
-            }*/
+
                 Words.Add(new Word(translations));
-            /*
-            if (translations.Length % Languages.Length == 0)
-            {
             }
             else
             {
                 throw new ArgumentException();
             }
-            */
-
-            //using (StreamWriter outputFile = new StreamWriter(Path.Combine(specificFolder, Name + ".dat"), true))
-
         }/*
         public bool Remove(int translation, string word)
         {

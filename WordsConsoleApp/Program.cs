@@ -31,28 +31,46 @@ namespace WordsConsoleApp
                         WordList newWordList = new WordList(args[1], args.Skip(2).ToArray());
 
                         bool cont = true;
-                        string[] tempArr = new string[newWordList.Languages.Length];
-                        string temp;
-                        while (cont)
+                        string input;
+                        try
                         {
-                            Console.WriteLine($"Input a word in {newWordList.Languages[0]}");
-                            temp = Console.ReadLine();
-                            if (temp == "")
+                            while (cont)
                             {
-                                cont = false;
-                            }
-                            else
-                            {
-                                tempArr[0] = temp;
-                                for (int i = 1; i < newWordList.Languages.Length; i++)
+                                string[] inputArray = new string[newWordList.Languages.Length];
+                                Console.WriteLine($"Input a word in {newWordList.Languages[0]}");
+                                input = Console.ReadLine();
+                                if (input == "")
                                 {
-                                    Console.WriteLine($"Input a word in {newWordList.Languages[i]}");
-                                    tempArr[i] = Console.ReadLine();
+                                    cont = false;
+                                }
+                                else
+                                {
+                                    inputArray[0] = input;
+                                    for (int i = 1; i < inputArray.Length; i++)
+                                    {
+                                        Console.WriteLine($"Input a word in {newWordList.Languages[i]}");
+                                        input = Console.ReadLine();
+                                        if (input == "")
+                                        {
+                                            cont = false;
+                                        }
+                                        else
+                                        {
+                                            inputArray[i] = input;
+                                        }
+                                    }
+                                    if (cont)
+                                    {
+                                        newWordList.Add(inputArray);
+                                    }
                                 }
                             }
-                            newWordList.Add(tempArr);
                         }
-
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Wrong input");
+                        }
+                        
                         Console.WriteLine("Do you wish to save? <y/n> ");
                         string yesNo = Console.ReadLine();
                         switch (yesNo.ToLower())
@@ -65,7 +83,59 @@ namespace WordsConsoleApp
                         }
                         break;
                     case "-add":
-                        //testAdd();
+                        WordList tempList = WordList.LoadList(args[1]);
+
+                        bool cont2 = true;
+                        string input2;
+                        try
+                        {
+                            while (cont2)
+                            {
+                                string[] inputArray = new string[tempList.Languages.Length];
+                                Console.WriteLine($"Input a word in {tempList.Languages[0]}");
+                                input2 = Console.ReadLine();
+                                if (input2 == "")
+                                {
+                                    cont2 = false;
+                                }
+                                else
+                                {
+                                    inputArray[0] = input2;
+                                    for (int i = 1; i < inputArray.Length; i++)
+                                    {
+                                        Console.WriteLine($"Input a word in {tempList.Languages[i]}");
+                                        input2 = Console.ReadLine();
+                                        if (input2 == "")
+                                        {
+                                            cont2 = false;
+                                        }
+                                        else
+                                        {
+                                            inputArray[i] = input2;
+                                        }
+                                    }
+                                    if (cont2)
+                                    {
+                                        tempList.Add(inputArray);
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Wrong input");
+                        }
+
+                        Console.WriteLine("Do you wish to save? <y/n> ");
+                        string yNo = Console.ReadLine();
+                        switch (yNo.ToLower())
+                        {
+                            case "y":
+                                tempList.Save();
+                                break;
+                            default:
+                                break;
+                        }
 
                         break;
                     case "-remove":
