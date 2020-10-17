@@ -50,51 +50,52 @@ namespace WordLibrary
         public void Save()
         {
             //Sparar listan till en fil med samma namn som listan och filändelse .dat 
-
             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string listFolder = Path.Combine(folderPath, "World_of_Wordcraft");
             Directory.CreateDirectory(listFolder);
-
             var listName = Path.Combine(listFolder, Name);
 
-            if (!File.Exists(listName + ".dat"))
+            File.WriteAllText(listName + ".dat", String.Empty);
+            foreach (var language in Languages)
             {
-                foreach (var language in Languages)
+                File.AppendAllText(listName.ToLower() + ".dat", language.ToUpper() + ";");
+            }
+            foreach (Word word in Words)
+            {
+                File.AppendAllText(listName + ".dat", Environment.NewLine);
+                foreach (var translation in word.Translations)
                 {
-                    File.AppendAllText(listName.ToLower() + ".dat", language.ToLower() + ";");
-                }
-                foreach (Word word in Words)
-                {
-                    File.AppendAllText(listName.ToLower() + ".dat", Environment.NewLine);
-                    foreach (var translation in word.Translations)
-                    {
-                        File.AppendAllText(listName.ToLower() + ".dat", translation.ToLower() + ";");
-                    }
+                    File.AppendAllText(listName + ".dat", translation.ToLower() + ";");
                 }
             }
-            else
-            {
-
-            }
-
         }
         public void Add(params string[] translations)
         {
             //Lägger till ord i listan.Kasta ArgumentException om det är fel antal translations. 
             if (translations.Length == Languages.Length)
             {
-
                 Words.Add(new Word(translations));
             }
             else
             {
                 throw new ArgumentException();
             }
-        }/*
+        }
         public bool Remove(int translation, string word)
         {
             //translation motsvarar index i Languages. Sök igenom språket och ta bort ordet. 
-        }*/
+            bool temp = false;
+            for (int i = 0; i < Words.Count; i++)
+            {
+                if (Words[i].Translations[translation] == word)
+                {
+                    Words.RemoveAt(i);
+                    temp = true;
+                    return temp;
+                }
+            }
+            return temp;
+        }
         public int Count()
         {
             //Räknar och returnerar antal ord i listan. 

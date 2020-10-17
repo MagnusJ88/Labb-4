@@ -28,12 +28,12 @@ namespace WordsConsoleApp
                         else Console.WriteLine("There are no lists available!");
                         break;
                     case "-new":
-                        WordList newWordList = new WordList(args[1], args.Skip(2).ToArray());
-
-                        bool cont = true;
-                        string input;
                         try
                         {
+                            WordList newWordList = new WordList(args[1], args.Skip(2).ToArray());
+
+                            bool cont = true;
+                            string input;
                             while (cont)
                             {
                                 string[] inputArray = new string[newWordList.Languages.Length];
@@ -53,6 +53,7 @@ namespace WordsConsoleApp
                                         if (input == "")
                                         {
                                             cont = false;
+                                            break;
                                         }
                                         else
                                         {
@@ -65,34 +66,34 @@ namespace WordsConsoleApp
                                     }
                                 }
                             }
+                            Console.WriteLine("Do you wish to save? <y/n> ");
+                            string yesNo = Console.ReadLine();
+                            switch (yesNo.ToLower())
+                            {
+                                case "y":
+                                    newWordList.Save();
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                         catch (Exception)
                         {
                             Console.WriteLine("Wrong input");
                         }
-                        
-                        Console.WriteLine("Do you wish to save? <y/n> ");
-                        string yesNo = Console.ReadLine();
-                        switch (yesNo.ToLower())
-                        {
-                            case "y":
-                                newWordList.Save();
-                                break;
-                            default:
-                                break;
-                        }
+
                         break;
                     case "-add":
-                        WordList tempList = WordList.LoadList(args[1]);
-
-                        bool cont2 = true;
-                        string input2;
                         try
                         {
+                            WordList addList = WordList.LoadList(args[1]);
+
+                            bool cont2 = true;
+                            string input2;
                             while (cont2)
                             {
-                                string[] inputArray = new string[tempList.Languages.Length];
-                                Console.WriteLine($"Input a word in {tempList.Languages[0]}");
+                                string[] inputArray = new string[addList.Languages.Length];
+                                Console.WriteLine($"Input a word in {addList.Languages[0]}");
                                 input2 = Console.ReadLine();
                                 if (input2 == "")
                                 {
@@ -103,11 +104,12 @@ namespace WordsConsoleApp
                                     inputArray[0] = input2;
                                     for (int i = 1; i < inputArray.Length; i++)
                                     {
-                                        Console.WriteLine($"Input a word in {tempList.Languages[i]}");
+                                        Console.WriteLine($"Input a word in {addList.Languages[i]}");
                                         input2 = Console.ReadLine();
                                         if (input2 == "")
                                         {
                                             cont2 = false;
+                                            break;
                                         }
                                         else
                                         {
@@ -116,35 +118,80 @@ namespace WordsConsoleApp
                                     }
                                     if (cont2)
                                     {
-                                        tempList.Add(inputArray);
+                                        addList.Add(inputArray);
                                     }
                                 }
+                            }
+                            Console.WriteLine("Do you wish to save? <y/n> ");
+                            string yNo = Console.ReadLine();
+                            switch (yNo.ToLower())
+                            {
+                                case "y":
+                                    addList.Save();
+                                    break;
+                                default:
+                                    break;
                             }
                         }
                         catch (Exception)
                         {
                             Console.WriteLine("Wrong input");
+                            PrintCommands();
                         }
-
-                        Console.WriteLine("Do you wish to save? <y/n> ");
-                        string yNo = Console.ReadLine();
-                        switch (yNo.ToLower())
-                        {
-                            case "y":
-                                tempList.Save();
-                                break;
-                            default:
-                                break;
-                        }
-
                         break;
                     case "-remove":
-                        //Remove();
+                        try
+                        {
+                            WordList removeList = WordList.LoadList(args[1]);
+
+                            string[] wordsToRemove = args.Skip(3).ToArray();
+                            for (int i = 0; i < removeList.Languages.Length; i++)
+                            {
+                                if (args[2].ToUpper() == removeList.Languages[i].ToUpper())
+                                {
+                                    foreach (String word in wordsToRemove)
+                                    {
+                                        if (removeList.Remove(i, word))
+                                        {
+                                            Console.WriteLine($"{word} was removed from the list!");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine($"{word} could not be found.");
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                            Console.WriteLine("Do you wish to save? <y/n> ");
+                            string yN = Console.ReadLine();
+                            switch (yN.ToLower())
+                            {
+                                case "y":
+                                    removeList.Save();
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            PrintCommands();
+                        }
                         break;
                     case "-words":
                         break;
                     case "-count":
-
+                        try
+                        {
+                            WordList countList = WordList.LoadList(args[1]);
+                            Console.WriteLine($"{args[1]} contains {countList.Count()} words");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("No such list!");
+                            PrintCommands();
+                        }
                         break;
                     case "-practice":
                         break;
