@@ -180,6 +180,29 @@ namespace WordsConsoleApp
                         }
                         break;
                     case "-words":
+                        try
+                        {
+                            WordList wordsList = WordList.LoadList(args[1]);
+                            int sortByTranslation = 0;
+                            if (args.Length > 2)
+                            {
+                                for (int i = 1; i < wordsList.Languages.Length; i++)
+                                {
+                                    if (args[2].ToUpper() == wordsList.Languages[i].ToUpper())
+                                    {
+                                        sortByTranslation = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            showTranslations(wordsList.Languages);
+                            Action<string[]> action = new Action<string[]>(showTranslations);
+                            wordsList.List(sortByTranslation, action);
+                        }
+                        catch (Exception)
+                        {
+                            PrintCommands();
+                        }
                         break;
                     case "-count":
                         try
@@ -194,6 +217,44 @@ namespace WordsConsoleApp
                         }
                         break;
                     case "-practice":
+                        try
+                        {
+                            WordList practiceList = WordList.LoadList(args[1]);
+                            bool practicing = true;
+                            decimal correctAnswers = 0m, wrongAnswers = 0m;
+                            while (practicing)
+                            {
+                                Word practiceWord = practiceList.GetWordToPractice();
+                                Console.WriteLine($"Translate {practiceWord.Translations[practiceWord.FromLanguage]} to " +
+                                                    $"{practiceList.Languages[practiceWord.ToLanguage]}:");
+                                String userInput = Console.ReadLine();
+                                if (userInput != "")
+                                {
+                                    if (userInput == practiceWord.Translations[practiceWord.ToLanguage])
+                                    {
+                                        correctAnswers++;
+                                        Console.WriteLine("Correct! Well done!");
+                                    }
+                                    else
+                                    {
+                                        wrongAnswers++;
+                                        Console.WriteLine("Wrong! Better luck next time!");
+                                    }
+                                }
+                                else
+                                {
+                                    practicing = false;
+                                }
+                            }
+                            Console.WriteLine($"Total number of guesses: {correctAnswers + wrongAnswers}\n" +
+                                $"Correct answers: {correctAnswers} " +
+                                $"({Math.Round(correctAnswers / (correctAnswers + wrongAnswers), 2) * 100}% correct)");
+                        }
+                        catch (Exception)
+                        {
+                            PrintCommands();
+                        }
+
                         break;
                     default:
                         PrintCommands();
@@ -211,6 +272,14 @@ namespace WordsConsoleApp
                                         "-words <listname> <sortByLanguage>\n" +
                                         "-count <listname>\n" +
                                         "-practice <listname>");
+        }
+        private static void showTranslations(string[] translations)
+        {
+            for (int i = 0; i < translations.Length; i++)
+            {
+                Console.Write($"{ translations[i], -10 }");
+            }
+            Console.WriteLine();
         }
     }
 }

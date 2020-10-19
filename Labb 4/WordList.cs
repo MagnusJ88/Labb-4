@@ -7,6 +7,7 @@ namespace WordLibrary
 {
     public class WordList
     {
+        Random random = new Random();
         public string Name { get; } //namnet på listan
         public string[] Languages { get; } //namnet på språken
         private List<Word> Words = new List<Word>();
@@ -101,19 +102,32 @@ namespace WordLibrary
             //Räknar och returnerar antal ord i listan. 
             return Words.Count;
         }
-        /*  public void List(int sortByTranslation, Action<string[]> showTranslations)
-          {
-              //sortByTranslation = Vilket språk listan ska sorteras på.
-              //showTranslations = Callback som anropas för varje ord i listan.
+        public void List(int sortByTranslation, Action<string[]> showTranslations)
+        {
+            //sortByTranslation = Vilket språk listan ska sorteras på.
+            //showTranslations = Callback som anropas för varje ord i listan.
+            //Listar ord (alla språk) från angiven lista. Om man anger språk sorteras listan efter
+            //det, annars sortera efter första språket.
+            Words = Words.OrderBy(temp => temp.Translations[sortByTranslation]).ToList();
+            foreach (Word word in Words)
+            {
+                showTranslations(word.Translations);
+            }
+        }
+        public Word GetWordToPractice()
+        {
+            //Returnerar slumpmässigt Word från listan, med slumpmässigt valda
+            //FromLanguage och ToLanguage(dock inte samma). 
+            int indexOfWord = random.Next(0, Words.Count);
+            int fromLanguage = random.Next(0, Languages.Length);
+            int toLanguage = random.Next(0, Languages.Length);
 
-          }
-          public Word GetWordToPractice()
-          {
-              //Returnerar slumpmässigt Word från listan, med slumpmässigt valda
-              //FromLanguage och ToLanguage(dock inte samma). 
-
-              //FromLanguage
-              //ToLanguage
-          }*/
+            if (fromLanguage == toLanguage)
+            {
+                toLanguage = Math.Abs(fromLanguage - 1);
+            }
+            Word temp = new Word(fromLanguage, toLanguage, Words[indexOfWord].Translations);
+            return temp;
+        }
     }
 }
