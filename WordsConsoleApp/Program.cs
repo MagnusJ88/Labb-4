@@ -30,52 +30,7 @@ namespace WordsConsoleApp
                     case "-new":
                         try
                         {
-                            WordList newWordList = new WordList(args[1], args.Skip(2).ToArray());
-
-                            bool cont = true;
-                            string input;
-                            while (cont)
-                            {
-                                string[] inputArray = new string[newWordList.Languages.Length];
-                                Console.WriteLine($"Input a word in {newWordList.Languages[0]}");
-                                input = Console.ReadLine();
-                                if (input == "")
-                                {
-                                    cont = false;
-                                }
-                                else
-                                {
-                                    inputArray[0] = input;
-                                    for (int i = 1; i < inputArray.Length; i++)
-                                    {
-                                        Console.WriteLine($"Input a word in {newWordList.Languages[i]}");
-                                        input = Console.ReadLine();
-                                        if (input == "")
-                                        {
-                                            cont = false;
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            inputArray[i] = input;
-                                        }
-                                    }
-                                    if (cont)
-                                    {
-                                        newWordList.Add(inputArray);
-                                    }
-                                }
-                            }
-                            Console.WriteLine("Do you wish to save? <y/n> ");
-                            string yesNo = Console.ReadLine();
-                            switch (yesNo.ToLower())
-                            {
-                                case "y":
-                                    newWordList.Save();
-                                    break;
-                                default:
-                                    break;
-                            }
+                            New(args);
                         }
                         catch (Exception)
                         {
@@ -86,52 +41,7 @@ namespace WordsConsoleApp
                     case "-add":
                         try
                         {
-                            WordList addList = WordList.LoadList(args[1]);
-
-                            bool cont2 = true;
-                            string input2;
-                            while (cont2)
-                            {
-                                string[] inputArray = new string[addList.Languages.Length];
-                                Console.WriteLine($"Input a word in {addList.Languages[0]}");
-                                input2 = Console.ReadLine();
-                                if (input2 == "")
-                                {
-                                    cont2 = false;
-                                }
-                                else
-                                {
-                                    inputArray[0] = input2;
-                                    for (int i = 1; i < inputArray.Length; i++)
-                                    {
-                                        Console.WriteLine($"Input a word in {addList.Languages[i]}");
-                                        input2 = Console.ReadLine();
-                                        if (input2 == "")
-                                        {
-                                            cont2 = false;
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            inputArray[i] = input2;
-                                        }
-                                    }
-                                    if (cont2)
-                                    {
-                                        addList.Add(inputArray);
-                                    }
-                                }
-                            }
-                            Console.WriteLine("Do you wish to save? <y/n> ");
-                            string yNo = Console.ReadLine();
-                            switch (yNo.ToLower())
-                            {
-                                case "y":
-                                    addList.Save();
-                                    break;
-                                default:
-                                    break;
-                            }
+                            Add(args);
                         }
                         catch (Exception)
                         {
@@ -142,37 +52,7 @@ namespace WordsConsoleApp
                     case "-remove":
                         try
                         {
-                            WordList removeList = WordList.LoadList(args[1]);
-
-                            string[] wordsToRemove = args.Skip(3).ToArray();
-                            for (int i = 0; i < removeList.Languages.Length; i++)
-                            {
-                                if (args[2].ToUpper() == removeList.Languages[i].ToUpper())
-                                {
-                                    foreach (String word in wordsToRemove)
-                                    {
-                                        if (removeList.Remove(i, word))
-                                        {
-                                            Console.WriteLine($"{word} was removed from the list!");
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine($"{word} could not be found.");
-                                        }
-                                    }
-                                    break;
-                                }
-                            }
-                            Console.WriteLine("Do you wish to save? <y/n> ");
-                            string yN = Console.ReadLine();
-                            switch (yN.ToLower())
-                            {
-                                case "y":
-                                    removeList.Save();
-                                    break;
-                                default:
-                                    break;
-                            }
+                            Remove(args);
                         }
                         catch (Exception)
                         {
@@ -219,48 +99,183 @@ namespace WordsConsoleApp
                     case "-practice":
                         try
                         {
-                            WordList practiceList = WordList.LoadList(args[1]);
-                            bool practicing = true;
-                            decimal correctAnswers = 0m, wrongAnswers = 0m;
-                            while (practicing)
-                            {
-                                Word practiceWord = practiceList.GetWordToPractice();
-                                Console.WriteLine($"Translate {practiceWord.Translations[practiceWord.FromLanguage]} to " +
-                                                    $"{practiceList.Languages[practiceWord.ToLanguage]}:");
-                                String userInput = Console.ReadLine();
-                                if (userInput != "")
-                                {
-                                    if (userInput == practiceWord.Translations[practiceWord.ToLanguage])
-                                    {
-                                        correctAnswers++;
-                                        Console.WriteLine("Correct! Well done!");
-                                    }
-                                    else
-                                    {
-                                        wrongAnswers++;
-                                        Console.WriteLine("Wrong! Better luck next time!");
-                                    }
-                                }
-                                else
-                                {
-                                    practicing = false;
-                                }
-                            }
-                            Console.WriteLine($"Total number of guesses: {correctAnswers + wrongAnswers}\n" +
-                                $"Correct answers: {correctAnswers} " +
-                                $"({Math.Round(correctAnswers / (correctAnswers + wrongAnswers), 2) * 100}% correct)");
+                            Practice(args);
                         }
                         catch (Exception)
                         {
                             PrintCommands();
                         }
-
                         break;
                     default:
                         PrintCommands();
                         break;
                 }
             }
+        }
+        private static void New(string[] args)
+        {
+            WordList newWordList = new WordList(args[1], args.Skip(2).ToArray());
+
+            bool cont = true;
+            string input;
+            while (cont)
+            {
+                string[] inputArray = new string[newWordList.Languages.Length];
+                Console.WriteLine($"Input a word in {newWordList.Languages[0]}");
+                input = Console.ReadLine();
+                if (input == "")
+                {
+                    cont = false;
+                }
+                else
+                {
+                    inputArray[0] = input;
+                    for (int i = 1; i < inputArray.Length; i++)
+                    {
+                        Console.WriteLine($"Input a word in {newWordList.Languages[i]}");
+                        input = Console.ReadLine();
+                        if (input == "")
+                        {
+                            cont = false;
+                            break;
+                        }
+                        else
+                        {
+                            inputArray[i] = input;
+                        }
+                    }
+                    if (cont)
+                    {
+                        newWordList.Add(inputArray);
+                    }
+                }
+            }
+            Console.WriteLine("Do you wish to save? <y/n> ");
+            string yesNo = Console.ReadLine();
+            switch (yesNo.ToLower())
+            {
+                case "y":
+                    newWordList.Save();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private static void Add(string[] args)
+        {
+            WordList addList = WordList.LoadList(args[1]);
+
+            bool cont = true;
+            string input;
+            while (cont)
+            {
+                string[] inputArray = new string[addList.Languages.Length];
+                Console.WriteLine($"Input a word in {addList.Languages[0]}");
+                input = Console.ReadLine();
+                if (input == "")
+                {
+                    cont = false;
+                }
+                else
+                {
+                    inputArray[0] = input;
+                    for (int i = 1; i < inputArray.Length; i++)
+                    {
+                        Console.WriteLine($"Input a word in {addList.Languages[i]}");
+                        input = Console.ReadLine();
+                        if (input == "")
+                        {
+                            cont = false;
+                            break;
+                        }
+                        else
+                        {
+                            inputArray[i] = input;
+                        }
+                    }
+                    if (cont)
+                    {
+                        addList.Add(inputArray);
+                    }
+                }
+            }
+            Console.WriteLine("Do you wish to save? <y/n> ");
+            string yesNo = Console.ReadLine();
+            switch (yesNo.ToLower())
+            {
+                case "y":
+                    addList.Save();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private static void Remove(string[] args)
+        {
+            WordList removeList = WordList.LoadList(args[1]);
+
+            string[] wordsToRemove = args.Skip(3).ToArray();
+            for (int i = 0; i < removeList.Languages.Length; i++)
+            {
+                if (args[2].ToUpper() == removeList.Languages[i].ToUpper())
+                {
+                    foreach (String word in wordsToRemove)
+                    {
+                        if (removeList.Remove(i, word))
+                        {
+                            Console.WriteLine($"{word} was removed from the list!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{word} could not be found.");
+                        }
+                    }
+                    break;
+                }
+            }
+            Console.WriteLine("Do you wish to save? <y/n> ");
+            string yesNo = Console.ReadLine();
+            switch (yesNo.ToLower())
+            {
+                case "y":
+                    removeList.Save();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private static void Practice(string[] args)
+        {
+            WordList practiceList = WordList.LoadList(args[1]);
+            bool practicing = true;
+            decimal correctAnswers = 0m, wrongAnswers = 0m;
+            while (practicing)
+            {
+                Word practiceWord = practiceList.GetWordToPractice();
+                Console.WriteLine($"Translate {practiceWord.Translations[practiceWord.FromLanguage]} to " +
+                                    $"{practiceList.Languages[practiceWord.ToLanguage]}:");
+                String userInput = Console.ReadLine();
+                if (userInput != "")
+                {
+                    if (userInput == practiceWord.Translations[practiceWord.ToLanguage])
+                    {
+                        correctAnswers++;
+                        Console.WriteLine("Correct! Well done!");
+                    }
+                    else
+                    {
+                        wrongAnswers++;
+                        Console.WriteLine("Wrong! Better luck next time!");
+                    }
+                }
+                else
+                {
+                    practicing = false;
+                }
+            }
+            Console.WriteLine($"Total number of guesses: {correctAnswers + wrongAnswers}\n" +
+                $"Correct answers: {correctAnswers} " +
+                $"({Math.Round(correctAnswers / (correctAnswers + wrongAnswers), 2) * 100}% correct)");
         }
         private static void PrintCommands()
         {
@@ -277,7 +292,7 @@ namespace WordsConsoleApp
         {
             for (int i = 0; i < translations.Length; i++)
             {
-                Console.Write($"{ translations[i], -10 }");
+                Console.Write($"{ translations[i],-10 }");
             }
             Console.WriteLine();
         }
