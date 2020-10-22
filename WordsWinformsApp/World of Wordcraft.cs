@@ -31,5 +31,12 @@ namespace WordsWinformsApp
             loadForm.TopLevel = true;
             loadForm.Show();
         }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewList newForm = new NewList();
+            newForm.TopLevel = true;
+            newForm.Show();
+        }
     }
 }

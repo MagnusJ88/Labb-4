@@ -52,6 +52,12 @@
     <Compile Include="Load.Designer.cs">
       <DependentUpon>Load.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewList.Designer.cs">
+      <DependentUpon>NewList.cs</DependentUpon>
+    </Compile>
     <Compile Include="World of Wordcraft.cs">
       <SubType>Form</SubType>
     </Compile>

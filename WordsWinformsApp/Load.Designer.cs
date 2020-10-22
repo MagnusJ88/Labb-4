@@ -99,8 +99,7 @@
             this.Controls.Add(this.listBox1);
             this.Name = "Load";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Load";
-            this.TopMost = true;
+            this.Text = "Edit lists";
             this.Load += new System.EventHandler(this.Load_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
