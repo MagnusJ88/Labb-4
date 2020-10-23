@@ -7,10 +7,10 @@ namespace WordLibrary
 {
     public class WordList
     {
-        Random random = new Random();
         public string Name { get; }
         public string[] Languages { get; }
         private List<Word> Words = new List<Word>();
+        private Random random = new Random();
         public WordList(string name, params string[] languages)
         {
             Name = name;

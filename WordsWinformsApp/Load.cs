@@ -13,8 +13,7 @@ namespace WordsWinformsApp
         }
         private void Load_Load(object sender, EventArgs e)
         {
-            string[] availableLists = WordList.GetLists();
-            foreach (string list in availableLists)
+            foreach (string list in WordList.GetLists())
             {
                 listBox1.Items.Add(list);
             }
@@ -25,8 +24,7 @@ namespace WordsWinformsApp
             saveButton.Enabled = false;
             if (listBox1.SelectedItem != null)
             {
-                string listName = listBox1.SelectedItem.ToString();
-                WordList loadedList = WordList.LoadList(listName);
+                WordList loadedList = WordList.LoadList(listBox1.SelectedItem.ToString());
                 dataGridView1.Columns.Clear();
                 foreach (var language in loadedList.Languages)
                 {
@@ -52,16 +50,29 @@ namespace WordsWinformsApp
             {
                 languages[i] = dataGridView1.Columns[i].HeaderText;
             }
-
+            bool isNotNull = true;
             List<string[]> translationsList = new List<string[]>();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 string[] translation = new string[dataGridView1.Columns.Count];
                 for (int j = 0; j < dataGridView1.Columns.Count; j++)
                 {
-                    translation[j] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                    if (dataGridView1.Rows[i].Cells[j].Value != null)
+                    {
+                        translation[j] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        isNotNull = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("All cells in a row must have a value or the row will not be added to the list!");
+                        isNotNull = false;
+                        break;
+                    }
                 }
-                translationsList.Add(translation);
+                if (isNotNull)
+                {
+                    translationsList.Add(translation);
+                }
             }
             WordList saveList = new WordList(listBox1.SelectedItem.ToString(), languages);
             foreach (var translation in translationsList)

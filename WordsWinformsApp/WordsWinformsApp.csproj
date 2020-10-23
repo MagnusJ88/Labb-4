@@ -69,6 +69,9 @@
     <EmbeddedResource Include="Load.resx">
       <DependentUpon>Load.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewList.resx">
+      <DependentUpon>NewList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="World of Wordcraft.resx">
       <DependentUpon>World of Wordcraft.cs</DependentUpon>
     </EmbeddedResource>

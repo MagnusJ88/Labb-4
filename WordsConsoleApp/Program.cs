@@ -296,6 +296,7 @@ namespace WordsConsoleApp
             {
                 case "y":
                     wordList.Save();
+                    Console.WriteLine($"Saved to {Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft"}");
                     break;
                 default:
                     break;
