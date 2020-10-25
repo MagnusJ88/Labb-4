@@ -36,6 +36,7 @@ namespace WordsWinformsApp
             else
             {
                 MessageBox.Show("You must add languages to the textbox on the left (separated by new lines)");
+                addButton.Enabled = true;
             }
         }
         private void textBoxName_TextChanged(object sender, EventArgs e)
@@ -77,6 +78,7 @@ namespace WordsWinformsApp
                         MessageBox.Show("All cells in a row must have a value or you can not save changes!");
                         isNotNull = false;
                         break;
+                        //TODO Stäng inte fönstret osv osv
                     }
                 }
                 if (isNotNull)

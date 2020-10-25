@@ -39,7 +39,7 @@
             this.rightWrongLabel = new System.Windows.Forms.Label();
             this.resultLabel1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.okButton = new System.Windows.Forms.Button();
+            this.submitButton = new System.Windows.Forms.Button();
             this.inputBox = new System.Windows.Forms.TextBox();
             this.toLanguageBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -138,7 +138,7 @@
             this.groupBox1.Controls.Add(this.rightWrongLabel);
             this.groupBox1.Controls.Add(this.resultLabel1);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.okButton);
+            this.groupBox1.Controls.Add(this.submitButton);
             this.groupBox1.Controls.Add(this.inputBox);
             this.groupBox1.Controls.Add(this.toLanguageBox);
             this.groupBox1.Controls.Add(this.label3);
@@ -180,21 +180,21 @@
             this.label4.TabIndex = 6;
             this.label4.Text = ":";
             // 
-            // okButton
+            // submitButton
             // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.submitButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.BackColor = System.Drawing.SystemColors.Control;
-            this.okButton.Enabled = false;
-            this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.okButton.Location = new System.Drawing.Point(706, 19);
-            this.okButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(96, 39);
-            this.okButton.TabIndex = 5;
-            this.okButton.Text = "Submit";
-            this.okButton.UseVisualStyleBackColor = false;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.submitButton.BackColor = System.Drawing.SystemColors.Control;
+            this.submitButton.Enabled = false;
+            this.submitButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.submitButton.Location = new System.Drawing.Point(706, 19);
+            this.submitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.submitButton.Name = "submitButton";
+            this.submitButton.Size = new System.Drawing.Size(96, 39);
+            this.submitButton.TabIndex = 5;
+            this.submitButton.Text = "Submit";
+            this.submitButton.UseVisualStyleBackColor = false;
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
             // inputBox
             // 
@@ -285,7 +285,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.TextBox inputBox;
         private System.Windows.Forms.TextBox toLanguageBox;
         private System.Windows.Forms.Label label3;

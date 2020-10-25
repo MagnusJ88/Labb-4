@@ -30,18 +30,25 @@ namespace WordLibrary
         }
         public static WordList LoadList(string name)
         {
-            string languageToLoad = File.ReadLines(FilePath() + name + ".dat").First();
-            string[] languages = languageToLoad.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            WordList loadedWordList = new WordList(name, languages);
-
-            string[] wordsToLoad = File.ReadAllLines(FilePath() + name + ".dat").Skip(1).ToArray();
-
-            foreach (var word in wordsToLoad)
+            try
             {
-                loadedWordList.Add(word.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
-            }
+                string languageToLoad = File.ReadLines(FilePath() + name + ".dat").First();
+                string[] languages = languageToLoad.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                WordList loadedWordList = new WordList(name, languages);
 
-            return loadedWordList;
+                string[] wordsToLoad = File.ReadAllLines(FilePath() + name + ".dat").Skip(1).ToArray();
+
+                foreach (var word in wordsToLoad)
+                {
+                    loadedWordList.Add(word.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+                }
+
+                return loadedWordList;
+            }
+            catch
+            {
+                throw new FileNotFoundException();
+            }
         }
         public void Save()
         {
@@ -101,20 +108,27 @@ namespace WordLibrary
         }
         public Word GetWordToPractice()
         {
-            int indexOfWord = random.Next(0, Words.Count);
-            int fromLanguage = random.Next(0, Languages.Length);
-            int toLanguage = random.Next(0, Languages.Length);
-
-            if (fromLanguage == toLanguage)
+            if (Words.Count != 0 && Languages.Length != 0)
             {
-                toLanguage = Math.Abs(fromLanguage - 1);
+                int indexOfWord = random.Next(0, Words.Count);
+                int fromLanguage = random.Next(0, Languages.Length);
+                int toLanguage = random.Next(0, Languages.Length);
+
+                if (fromLanguage == toLanguage)
+                {
+                    toLanguage = Math.Abs(fromLanguage - 1);
+                }
+                Word wordToPractice = new Word(fromLanguage, toLanguage, Words[indexOfWord].Translations);
+                return wordToPractice;
             }
-            Word wordToPractice = new Word(fromLanguage, toLanguage, Words[indexOfWord].Translations);
-            return wordToPractice;
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
         }
         private static string FilePath()
         {
-            return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + 
+            return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
                     "\\World_of_Wordcraft\\";
         }
     }

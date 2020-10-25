@@ -5,9 +5,9 @@ using WordLibrary;
 
 namespace WordsWinformsApp
 {
-    public partial class Load : Form
+    public partial class Edit : Form
     {
-        public Load()
+        public Edit()
         {
             InitializeComponent();
         }
@@ -20,7 +20,7 @@ namespace WordsWinformsApp
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MakeReadOnly();
+            MakeFormReadOnly();
 
             if (listBox1.SelectedItem != null)
             {
@@ -40,7 +40,7 @@ namespace WordsWinformsApp
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
-            MakeReadOnly();
+            MakeFormReadOnly();
 
             string[] languages = new string[dataGridView1.Columns.Count];
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
@@ -115,7 +115,7 @@ namespace WordsWinformsApp
                     "otherwise deletion will not occur!");
             }
         }
-        private void MakeReadOnly()
+        private void MakeFormReadOnly()
         {
             dataGridView1.ReadOnly = true;
             dataGridView1.AllowUserToAddRows = false;

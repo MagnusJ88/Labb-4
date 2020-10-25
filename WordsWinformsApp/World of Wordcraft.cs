@@ -42,23 +42,23 @@ namespace WordsWinformsApp
         {
             if (inputBox.Text.Length != 0)
             {
-                okButton.Enabled = true;
+                submitButton.Enabled = true;
             }
             else
             {
-                okButton.Enabled = false;
+                submitButton.Enabled = false;
             }
         }
         private void inputBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                okButton.PerformClick();
+                submitButton.PerformClick();
                 e.SuppressKeyPress = true;
                 e.Handled = true;
             }
         }
-        private void okButton_Click(object sender, EventArgs e)
+        private void submitButton_Click(object sender, EventArgs e)
         {
             if (inputBox.Text.ToLower() == rightAnswer)
             {
@@ -79,18 +79,25 @@ namespace WordsWinformsApp
         private void Practice(Word word)
         {
             fromLanguageBox.Text = word.Translations[word.FromLanguage];
-            toLanguageBox.Text = practiceList.Languages[word.ToLanguage];
+            toLanguageBox.Text = practiceList.Languages[word.ToLanguage].ToLower();
             rightAnswer = word.Translations[word.ToLanguage];
         }
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Load loadForm = new Load();
+            Edit loadForm = new Edit();
             loadForm.ShowDialog();
         }
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewList newForm = new NewList();
             newForm.ShowDialog();
+        }
+        private void NewList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (string list in WordList.GetLists())
+            {
+                listBox1.Items.Add(list);
+            }
         }
     }
 }

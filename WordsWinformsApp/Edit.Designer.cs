@@ -1,6 +1,6 @@
 ﻿namespace WordsWinformsApp
 {
-    partial class Load
+    partial class Edit
     {
         /// <summary>
         /// Required designer variable.
