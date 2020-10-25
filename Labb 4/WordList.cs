@@ -18,7 +18,8 @@ namespace WordLibrary
         }
         public static string[] GetLists()
         {
-            DirectoryInfo listFolder = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft");
+            DirectoryInfo listFolder = new DirectoryInfo(FilePath());
+
             FileInfo[] Files = listFolder.GetFiles("*.dat");
             string[] allFiles = new string[Files.Length];
             for (int i = 0; i < Files.Length; i++)
@@ -29,11 +30,11 @@ namespace WordLibrary
         }
         public static WordList LoadList(string name)
         {
-            var languageToLoad = File.ReadLines(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft\\" + name + ".dat").First();
+            string languageToLoad = File.ReadLines(FilePath() + name + ".dat").First();
             string[] languages = languageToLoad.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             WordList loadedWordList = new WordList(name, languages);
 
-            string[] wordsToLoad = File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft\\" + name + ".dat").Skip(1).ToArray();
+            string[] wordsToLoad = File.ReadAllLines(FilePath() + name + ".dat").Skip(1).ToArray();
 
             foreach (var word in wordsToLoad)
             {
@@ -44,10 +45,8 @@ namespace WordLibrary
         }
         public void Save()
         {
-            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string listFolder = Path.Combine(folderPath, "World_of_Wordcraft");
-            Directory.CreateDirectory(listFolder);
-            var listName = Path.Combine(listFolder, Name);
+            Directory.CreateDirectory(FilePath());
+            var listName = Path.Combine(FilePath(), Name);
 
             File.WriteAllText(listName + ".dat", String.Empty);
             foreach (var language in Languages)
@@ -112,6 +111,11 @@ namespace WordLibrary
             }
             Word wordToPractice = new Word(fromLanguage, toLanguage, Words[indexOfWord].Translations);
             return wordToPractice;
+        }
+        private static string FilePath()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + 
+                    "\\World_of_Wordcraft\\";
         }
     }
 }

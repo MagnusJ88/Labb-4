@@ -20,8 +20,8 @@ namespace WordsWinformsApp
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            editButton.Enabled = true;
-            saveButton.Enabled = false;
+            MakeReadOnly();
+
             if (listBox1.SelectedItem != null)
             {
                 WordList loadedList = WordList.LoadList(listBox1.SelectedItem.ToString());
@@ -40,16 +40,14 @@ namespace WordsWinformsApp
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
-            dataGridView1.ReadOnly = true;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            editButton.Enabled = true;
-            saveButton.Enabled = false;
+            MakeReadOnly();
+
             string[] languages = new string[dataGridView1.Columns.Count];
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {
                 languages[i] = dataGridView1.Columns[i].HeaderText;
             }
+
             bool isNotNull = true;
             List<string[]> translationsList = new List<string[]>();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
@@ -64,7 +62,8 @@ namespace WordsWinformsApp
                     }
                     else
                     {
-                        MessageBox.Show("All cells in a row must have a value or the row will not be added to the list!");
+                        MessageBox.Show("All cells in a row must have a value or the row will not " +
+                            "be added to the list!");
                         isNotNull = false;
                         break;
                     }
@@ -74,6 +73,7 @@ namespace WordsWinformsApp
                     translationsList.Add(translation);
                 }
             }
+
             WordList saveList = new WordList(listBox1.SelectedItem.ToString(), languages);
             foreach (var translation in translationsList)
             {
@@ -89,6 +89,42 @@ namespace WordsWinformsApp
             dataGridView1.AllowUserToDeleteRows = true;
             dataGridView1.ReadOnly = false;
             editButton.Enabled = false;
+            deleteButton.Enabled = true;
+            label2.Visible = true;
+            label3.Visible = true;
+        }
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    {
+                        dataGridView1.Rows.Remove(row);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Why would you try to delete a row with nothing in it?");
+                }
+            }
+            else
+            {
+                MessageBox.Show("User must select an entire row by clicking the blank column (far left), " +
+                    "otherwise deletion will not occur!");
+            }
+        }
+        private void MakeReadOnly()
+        {
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            editButton.Enabled = true;
+            saveButton.Enabled = false;
+            deleteButton.Enabled = false;
+            label2.Visible = false;
+            label3.Visible = false;
         }
     }
 }

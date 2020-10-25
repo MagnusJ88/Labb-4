@@ -19,15 +19,11 @@ namespace WordsWinformsApp
             dataGridView1.Visible = false;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void addButton_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns.Clear();
             dataGridView1.ReadOnly = false;
+            label3.Visible = true;
             addButton.Enabled = false;
             if (languageTextBox.Text.Length != 0)
             {

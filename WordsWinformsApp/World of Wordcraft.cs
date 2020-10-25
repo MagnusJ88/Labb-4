@@ -7,7 +7,8 @@ namespace WordsWinformsApp
     public partial class Form1 : Form
     {
         private WordList practiceList;
-        private int correctAnswers, wrongAnswers;
+        private decimal correctAnswers = 0m, wrongAnswers = 0m;
+        private string rightAnswer;
         public Form1()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace WordsWinformsApp
                 practiceButton.Enabled = true;
                 fromLanguageBox.Clear();
                 toLanguageBox.Clear();
+                rightWrongLabel.Text = "";
             }
         }
         private void practiceButton_Click(object sender, EventArgs e)
@@ -47,24 +49,38 @@ namespace WordsWinformsApp
                 okButton.Enabled = false;
             }
         }
+        private void inputBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                okButton.PerformClick();
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+        }
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (inputBox.Text.ToLower() == fromLanguageBox.Text)
+            if (inputBox.Text.ToLower() == rightAnswer)
             {
                 correctAnswers++;
+                resultLabel1.Text = "Correct!";
             }
             else
             {
                 wrongAnswers++;
+                resultLabel1.Text = "Wrong!";
             }
             inputBox.Clear();
             inputBox.Focus();
+            rightWrongLabel.Text = $"Correct answers: {correctAnswers}. Wrong answers: {wrongAnswers}." +
+                $" ({Math.Round(correctAnswers / (correctAnswers + wrongAnswers), 1) * 100}% correct)";
             Practice(practiceList.GetWordToPractice());
         }
         private void Practice(Word word)
         {
             fromLanguageBox.Text = word.Translations[word.FromLanguage];
             toLanguageBox.Text = practiceList.Languages[word.ToLanguage];
+            rightAnswer = word.Translations[word.ToLanguage];
         }
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {

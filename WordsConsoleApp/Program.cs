@@ -275,7 +275,7 @@ namespace WordsConsoleApp
             }
             Console.WriteLine($"Total number of guesses: {correctAnswers + wrongAnswers}\n" +
                 $"Correct answers: {correctAnswers} " +
-                $"({Math.Round(correctAnswers / (correctAnswers + wrongAnswers), 2) * 100}% correct)");
+                $"({Math.Round(correctAnswers / (correctAnswers + wrongAnswers), 0) * 100}% correct)");
         }
         private static void PrintCommands()
         {
