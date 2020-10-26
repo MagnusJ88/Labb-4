@@ -8,23 +8,25 @@ namespace WordsWinformsApp
 {
     public partial class NewList : Form
     {
+        
         public NewList()
         {
             InitializeComponent();
         }
-
         private void NewList_Load(object sender, EventArgs e)
         {
             dataGridView1.ReadOnly = true;
             dataGridView1.Visible = false;
         }
-
         private void addButton_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns.Clear();
             dataGridView1.ReadOnly = false;
             label3.Visible = true;
             addButton.Enabled = false;
+            languageTextBox.ReadOnly = true;
+            textBoxName.ReadOnly = true;
+
             if (languageTextBox.Text.Length != 0)
             {
                 foreach (string word in languageTextBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
@@ -37,6 +39,7 @@ namespace WordsWinformsApp
             {
                 MessageBox.Show("You must add languages to the textbox on the left (separated by new lines)");
                 addButton.Enabled = true;
+                languageTextBox.ReadOnly = false;
             }
         }
         private void textBoxName_TextChanged(object sender, EventArgs e)
@@ -59,6 +62,9 @@ namespace WordsWinformsApp
         {
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ReadOnly = true;
+            languageTextBox.ReadOnly = false;
+            textBoxName.ReadOnly = false;
+
             string[] languages = languageTextBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             WordList saveList = new WordList(textBoxName.Text, languages);
             List<string[]> translationList = new List<string[]>();
@@ -93,7 +99,13 @@ namespace WordsWinformsApp
 
             //TODO are you sure you wish to save?-knapp!
             saveList.Save();
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

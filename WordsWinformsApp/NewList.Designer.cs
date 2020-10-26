@@ -36,6 +36,7 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.cancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             this.languageTextBox.Location = new System.Drawing.Point(13, 84);
             this.languageTextBox.Multiline = true;
             this.languageTextBox.Name = "languageTextBox";
-            this.languageTextBox.Size = new System.Drawing.Size(135, 297);
+            this.languageTextBox.Size = new System.Drawing.Size(135, 267);
             this.languageTextBox.TabIndex = 3;
             // 
             // dataGridView1
@@ -93,7 +94,7 @@
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.saveButton.Enabled = false;
-            this.saveButton.Location = new System.Drawing.Point(12, 416);
+            this.saveButton.Location = new System.Drawing.Point(12, 386);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(136, 23);
             this.saveButton.TabIndex = 5;
@@ -105,7 +106,7 @@
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.addButton.Enabled = false;
-            this.addButton.Location = new System.Drawing.Point(12, 387);
+            this.addButton.Location = new System.Drawing.Point(13, 357);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(136, 23);
             this.addButton.TabIndex = 6;
@@ -124,11 +125,23 @@
             this.label3.Text = "Add words here! All rows must be complete!";
             this.label3.Visible = false;
             // 
+            // cancelButton
+            // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cancelButton.Location = new System.Drawing.Point(12, 415);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(136, 23);
+            this.cancelButton.TabIndex = 8;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // NewList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.saveButton);
@@ -156,5 +169,6 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

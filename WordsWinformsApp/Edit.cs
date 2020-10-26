@@ -24,6 +24,7 @@ namespace WordsWinformsApp
 
             if (listBox1.SelectedItem != null)
             {
+                editButton.Enabled = true;
                 WordList loadedList = WordList.LoadList(listBox1.SelectedItem.ToString());
                 dataGridView1.Columns.Clear();
                 foreach (var language in loadedList.Languages)
@@ -114,6 +115,10 @@ namespace WordsWinformsApp
                 MessageBox.Show("User must select an entire row by clicking the blank column (far left), " +
                     "otherwise deletion will not occur!");
             }
+        }
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
         private void MakeFormReadOnly()
         {

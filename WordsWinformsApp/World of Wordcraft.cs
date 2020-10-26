@@ -28,6 +28,8 @@ namespace WordsWinformsApp
                 fromLanguageBox.Clear();
                 toLanguageBox.Clear();
                 rightWrongLabel.Text = "";
+                correctAnswers = 0m;
+                wrongAnswers = 0m;
             }
         }
         private void practiceButton_Click(object sender, EventArgs e)
@@ -89,14 +91,16 @@ namespace WordsWinformsApp
         }
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewList newForm = new NewList();
-            newForm.ShowDialog();
-        }
-        private void NewList_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            foreach (string list in WordList.GetLists())
+            using (NewList newForm = new NewList())
             {
-                listBox1.Items.Add(list);
+                if (newForm.ShowDialog() == DialogResult.OK)
+                {
+                    listBox1.Items.Clear();
+                    foreach (string list in WordList.GetLists())
+                    {
+                        listBox1.Items.Add(list);
+                    }
+                }
             }
         }
     }

@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.deleteButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.cancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +72,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(773, 382);
+            this.dataGridView1.Size = new System.Drawing.Size(773, 370);
             this.dataGridView1.TabIndex = 1;
             // 
             // saveButton
@@ -81,10 +82,10 @@
             this.saveButton.Enabled = false;
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saveButton.Location = new System.Drawing.Point(12, 427);
+            this.saveButton.Location = new System.Drawing.Point(93, 427);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 35);
-            this.saveButton.TabIndex = 2;
+            this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -93,12 +94,13 @@
             // 
             this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.editButton.BackColor = System.Drawing.SystemColors.Control;
+            this.editButton.Enabled = false;
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.editButton.Location = new System.Drawing.Point(94, 427);
+            this.editButton.Location = new System.Drawing.Point(12, 427);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(75, 35);
-            this.editButton.TabIndex = 3;
+            this.editButton.TabIndex = 2;
             this.editButton.Text = "Edit";
             this.editButton.UseVisualStyleBackColor = false;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
@@ -122,7 +124,7 @@
             this.label2.Location = new System.Drawing.Point(197, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(674, 18);
-            this.label2.TabIndex = 5;
+            this.label2.TabIndex = 7;
             this.label2.Text = "Add words here! Make sure to enter a value in each cell! If a cell is left blank," +
     " the row can not be saved!";
             this.label2.Visible = false;
@@ -137,7 +139,7 @@
             this.deleteButton.Location = new System.Drawing.Point(867, 427);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(103, 35);
-            this.deleteButton.TabIndex = 6;
+            this.deleteButton.TabIndex = 5;
             this.deleteButton.Text = "Delete row";
             this.deleteButton.UseVisualStyleBackColor = false;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
@@ -148,20 +150,32 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(197, 435);
+            this.label3.Location = new System.Drawing.Point(283, 427);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(521, 17);
-            this.label3.TabIndex = 7;
+            this.label3.TabIndex = 8;
             this.label3.Text = "Selecting a different list or closing this window without saving will discard cha" +
     "nges!";
             this.label3.Visible = false;
             // 
-            // Load
+            // cancelButton
+            // 
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Location = new System.Drawing.Point(175, 427);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(88, 35);
+            this.cancelButton.TabIndex = 4;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
+            // Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(982, 473);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.label2);
@@ -170,7 +184,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.listBox1);
-            this.Name = "Load";
+            this.Name = "Edit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit lists";
             this.Load += new System.EventHandler(this.Load_Load);
@@ -190,5 +204,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button cancelButton;
     }
 }
