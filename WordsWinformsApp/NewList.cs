@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using WordLibrary;
@@ -8,7 +7,6 @@ namespace WordsWinformsApp
 {
     public partial class NewList : Form
     {
-        
         public NewList()
         {
             InitializeComponent();
@@ -17,57 +15,60 @@ namespace WordsWinformsApp
         {
             dataGridView1.ReadOnly = true;
             dataGridView1.Visible = false;
-        }
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            dataGridView1.Columns.Clear();
-            dataGridView1.ReadOnly = false;
-            label3.Visible = true;
-            addButton.Enabled = false;
-            languageTextBox.ReadOnly = true;
-            textBoxName.ReadOnly = true;
-
-            if (languageTextBox.Text.Length != 0)
-            {
-                foreach (string word in languageTextBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    dataGridView1.Columns.Add(word, word);
-                }
-                dataGridView1.Visible = true;
-            }
-            else
-            {
-                MessageBox.Show("You must add languages to the textbox on the left (separated by new lines)");
-                addButton.Enabled = true;
-                languageTextBox.ReadOnly = false;
-            }
+            textBoxName.Focus();
         }
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
             if (WordList.GetLists().Contains(textBoxName.Text.ToLower()) || textBoxName.Text.Length == 0)
             {
-                saveButton.Enabled = false;
                 addButton.Enabled = false;
                 languageTextBox.Enabled = false;
             }
             else
             {
-                saveButton.Enabled = true;
                 addButton.Enabled = true;
                 languageTextBox.Enabled = true;
             }
         }
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            label3.Visible = true;
+            addButton.Enabled = false;
+            dataGridView1.ReadOnly = false;
+            languageTextBox.ReadOnly = true;
+            textBoxName.ReadOnly = true;
 
+            string[] languages = languageTextBox.Text.Split(new[] { Environment.NewLine },
+                        StringSplitOptions.RemoveEmptyEntries);
+
+            if (languages.Length > 1)
+            {
+                foreach (string word in languages)
+                {
+                    dataGridView1.Columns.Add(word, word);
+                }
+                dataGridView1.Visible = true;
+                saveButton.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("You must add two or more languages to the textbox on the left " +
+                                "(separated by new lines)");
+                addButton.Enabled = true;
+                saveButton.Enabled = false;
+                languageTextBox.ReadOnly = false;
+            }
+        }
         private void saveButton_Click(object sender, EventArgs e)
         {
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ReadOnly = true;
-            languageTextBox.ReadOnly = false;
-            textBoxName.ReadOnly = false;
 
-            string[] languages = languageTextBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string[] languages = languageTextBox.Text.Split(new[] { Environment.NewLine },
+                                StringSplitOptions.RemoveEmptyEntries);
+
             WordList saveList = new WordList(textBoxName.Text, languages);
-            List<string[]> translationList = new List<string[]>();
+
             bool isNotNull = true;
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -84,28 +85,26 @@ namespace WordsWinformsApp
                         MessageBox.Show("All cells in a row must have a value or you can not save changes!");
                         isNotNull = false;
                         break;
-                        //TODO Stäng inte fönstret osv osv
                     }
                 }
                 if (isNotNull)
                 {
-                    translationList.Add(translation);
+                    saveList.Add(translation);
                 }
             }
-            foreach (var translation in translationList)
+            try
             {
-                saveList.Add(translation);
+                saveList.Save();
+                DialogResult = DialogResult.OK;
             }
-
-            //TODO are you sure you wish to save?-knapp!
-            saveList.Save();
-            DialogResult = DialogResult.OK;
-            Close();
+            catch
+            {
+                MessageBox.Show("Save failed!");
+            }
         }
         private void cancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-            Close();
         }
     }
 }

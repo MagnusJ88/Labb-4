@@ -39,6 +39,17 @@ namespace WordsWinformsApp
         {
             dataGridView1.Rows.Add(translations);
         }
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            saveButton.Enabled = true;
+            dataGridView1.AllowUserToAddRows = true;
+            dataGridView1.AllowUserToDeleteRows = true;
+            dataGridView1.ReadOnly = false;
+            editButton.Enabled = false;
+            deleteButton.Enabled = true;
+            label2.Visible = true;
+            label3.Visible = true;
+        }
         private void saveButton_Click(object sender, EventArgs e)
         {
             MakeFormReadOnly();
@@ -80,19 +91,15 @@ namespace WordsWinformsApp
             {
                 saveList.Add(translation);
             }
-            //are you sure you wish to save-knapp!
-            saveList.Save();
-        }
-        private void editButton_Click(object sender, EventArgs e)
-        {
-            saveButton.Enabled = true;
-            dataGridView1.AllowUserToAddRows = true;
-            dataGridView1.AllowUserToDeleteRows = true;
-            dataGridView1.ReadOnly = false;
-            editButton.Enabled = false;
-            deleteButton.Enabled = true;
-            label2.Visible = true;
-            label3.Visible = true;
+
+            try
+            {
+                saveList.Save();
+            }
+            catch
+            {
+                MessageBox.Show("Save failed");
+            }
         }
         private void deleteButton_Click(object sender, EventArgs e)
         {
@@ -116,7 +123,7 @@ namespace WordsWinformsApp
                     "otherwise deletion will not occur!");
             }
         }
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void closeButton_Click(object sender, EventArgs e)
         {
             Close();
         }

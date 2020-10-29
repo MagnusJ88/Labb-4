@@ -43,10 +43,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(9, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 17);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 7;
             this.label1.Text = "Name";
             // 
             // textBoxName
@@ -54,16 +54,16 @@
             this.textBoxName.Location = new System.Drawing.Point(13, 34);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(135, 22);
-            this.textBoxName.TabIndex = 1;
+            this.textBoxName.TabIndex = 0;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 63);
+            this.label2.Location = new System.Drawing.Point(10, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 17);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 8;
             this.label2.Text = "Languages";
             // 
             // languageTextBox
@@ -75,7 +75,7 @@
             this.languageTextBox.Multiline = true;
             this.languageTextBox.Name = "languageTextBox";
             this.languageTextBox.Size = new System.Drawing.Size(135, 267);
-            this.languageTextBox.TabIndex = 3;
+            this.languageTextBox.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -88,7 +88,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(614, 404);
-            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.TabIndex = 5;
             // 
             // saveButton
             // 
@@ -97,7 +97,7 @@
             this.saveButton.Location = new System.Drawing.Point(12, 386);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(136, 23);
-            this.saveButton.TabIndex = 5;
+            this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save new list";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -109,7 +109,7 @@
             this.addButton.Location = new System.Drawing.Point(13, 357);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(136, 23);
-            this.addButton.TabIndex = 6;
+            this.addButton.TabIndex = 2;
             this.addButton.Text = "Add words";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
@@ -121,7 +121,7 @@
             this.label3.Location = new System.Drawing.Point(174, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(295, 18);
-            this.label3.TabIndex = 7;
+            this.label3.TabIndex = 9;
             this.label3.Text = "Add words here! All rows must be complete!";
             this.label3.Visible = false;
             // 
@@ -131,7 +131,7 @@
             this.cancelButton.Location = new System.Drawing.Point(12, 415);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(136, 23);
-            this.cancelButton.TabIndex = 8;
+            this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -150,6 +150,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label1);
+            this.MinimumSize = new System.Drawing.Size(818, 497);
             this.Name = "NewList";
             this.Text = "New list";
             this.Load += new System.EventHandler(this.NewList_Load);

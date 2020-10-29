@@ -78,7 +78,7 @@
             this.loadToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.loadToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.loadToolStripMenuItem.Text = "Edit lists";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
@@ -87,7 +87,7 @@
             this.newToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.newToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.newToolStripMenuItem.Text = "New list";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -134,6 +134,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Controls.Add(this.rightWrongLabel);
             this.groupBox1.Controls.Add(this.resultLabel1);
@@ -149,31 +150,38 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(810, 129);
+            this.groupBox1.Size = new System.Drawing.Size(810, 137);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
             // rightWrongLabel
             // 
+            this.rightWrongLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rightWrongLabel.AutoSize = true;
             this.rightWrongLabel.Location = new System.Drawing.Point(11, 106);
             this.rightWrongLabel.Name = "rightWrongLabel";
-            this.rightWrongLabel.Size = new System.Drawing.Size(0, 18);
+            this.rightWrongLabel.Size = new System.Drawing.Size(81, 18);
             this.rightWrongLabel.TabIndex = 8;
+            this.rightWrongLabel.Text = "right/wrong";
+            this.rightWrongLabel.Visible = false;
             // 
             // resultLabel1
             // 
+            this.resultLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.resultLabel1.AutoSize = true;
-            this.resultLabel1.Location = new System.Drawing.Point(488, 55);
+            this.resultLabel1.Location = new System.Drawing.Point(523, 46);
             this.resultLabel1.Name = "resultLabel1";
-            this.resultLabel1.Size = new System.Drawing.Size(0, 18);
+            this.resultLabel1.Size = new System.Drawing.Size(44, 18);
             this.resultLabel1.TabIndex = 7;
+            this.resultLabel1.Text = "result";
+            this.resultLabel1.Visible = false;
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(462, 22);
+            this.label4.Location = new System.Drawing.Point(443, 22);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(13, 18);
@@ -182,15 +190,14 @@
             // 
             // submitButton
             // 
-            this.submitButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.submitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.submitButton.BackColor = System.Drawing.SystemColors.Control;
             this.submitButton.Enabled = false;
             this.submitButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.submitButton.Location = new System.Drawing.Point(706, 19);
+            this.submitButton.Location = new System.Drawing.Point(689, 15);
             this.submitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.submitButton.Name = "submitButton";
-            this.submitButton.Size = new System.Drawing.Size(96, 39);
+            this.submitButton.Size = new System.Drawing.Size(96, 32);
             this.submitButton.TabIndex = 5;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = false;
@@ -198,7 +205,9 @@
             // 
             // inputBox
             // 
-            this.inputBox.Location = new System.Drawing.Point(491, 19);
+            this.inputBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.inputBox.Enabled = false;
+            this.inputBox.Location = new System.Drawing.Point(464, 19);
             this.inputBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.inputBox.Name = "inputBox";
             this.inputBox.Size = new System.Drawing.Size(193, 24);
@@ -208,7 +217,8 @@
             // 
             // toLanguageBox
             // 
-            this.toLanguageBox.Location = new System.Drawing.Point(296, 19);
+            this.toLanguageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.toLanguageBox.Location = new System.Drawing.Point(279, 19);
             this.toLanguageBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toLanguageBox.Name = "toLanguageBox";
             this.toLanguageBox.ReadOnly = true;
@@ -217,9 +227,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(261, 22);
+            this.label3.Location = new System.Drawing.Point(250, 22);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(21, 18);
@@ -228,6 +239,7 @@
             // 
             // fromLanguageBox
             // 
+            this.fromLanguageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromLanguageBox.Location = new System.Drawing.Point(89, 19);
             this.fromLanguageBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.fromLanguageBox.Name = "fromLanguageBox";
@@ -238,9 +250,10 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(8, 22);
+            this.label2.Location = new System.Drawing.Point(11, 22);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 18);
@@ -262,6 +275,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1023, 287);
             this.Name = "Form1";
             this.Text = "World of Wordcraft";
             this.Load += new System.EventHandler(this.Form1_Load);

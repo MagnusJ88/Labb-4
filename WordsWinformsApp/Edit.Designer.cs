@@ -49,9 +49,9 @@
             this.listBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(12, 44);
+            this.listBox1.Location = new System.Drawing.Point(12, 38);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(157, 364);
+            this.listBox1.Size = new System.Drawing.Size(179, 382);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -72,7 +72,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(773, 370);
+            this.dataGridView1.Size = new System.Drawing.Size(773, 382);
             this.dataGridView1.TabIndex = 1;
             // 
             // saveButton
@@ -110,10 +110,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(12, 23);
+            this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 18);
-            this.label1.TabIndex = 4;
+            this.label1.TabIndex = 7;
             this.label1.Text = "Available lists";
             // 
             // label2
@@ -124,7 +124,7 @@
             this.label2.Location = new System.Drawing.Point(197, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(674, 18);
-            this.label2.TabIndex = 7;
+            this.label2.TabIndex = 8;
             this.label2.Text = "Add words here! Make sure to enter a value in each cell! If a cell is left blank," +
     " the row can not be saved!";
             this.label2.Visible = false;
@@ -150,24 +150,25 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(283, 427);
+            this.label3.Location = new System.Drawing.Point(298, 437);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(521, 17);
-            this.label3.TabIndex = 8;
+            this.label3.TabIndex = 9;
             this.label3.Text = "Selecting a different list or closing this window without saving will discard cha" +
     "nges!";
             this.label3.Visible = false;
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Location = new System.Drawing.Point(175, 427);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(88, 35);
             this.cancelButton.TabIndex = 4;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.Text = "Close";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // Edit
             // 
@@ -184,6 +185,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.listBox1);
+            this.MinimumSize = new System.Drawing.Size(1000, 520);
             this.Name = "Edit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit lists";

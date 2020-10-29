@@ -25,9 +25,11 @@ namespace WordsWinformsApp
             if (listBox1.SelectedItem != null)
             {
                 practiceButton.Enabled = true;
+                inputBox.Enabled = false;
                 fromLanguageBox.Clear();
                 toLanguageBox.Clear();
                 rightWrongLabel.Text = "";
+                resultLabel1.Text = "";
                 correctAnswers = 0m;
                 wrongAnswers = 0m;
             }
@@ -36,9 +38,22 @@ namespace WordsWinformsApp
         {
             groupBox1.Visible = true;
             practiceButton.Enabled = false;
-            practiceList = WordList.LoadList(listBox1.SelectedItem.ToString());
-            Practice(practiceList.GetWordToPractice());
+            inputBox.Enabled = true;
             inputBox.Focus();
+
+            try
+            {
+                practiceList = WordList.LoadList(listBox1.SelectedItem.ToString());
+                Practice(practiceList.GetWordToPractice());
+            }
+            catch
+            {
+                MessageBox.Show("Error: incomplete list!\n" +
+                                "Use 'Edit lists' under 'File' menu to add words\n" +
+                                "or select a different list!");
+                practiceButton.Enabled = false;
+                inputBox.Enabled = false;
+            }
         }
         private void inputBox_TextChanged(object sender, EventArgs e)
         {
@@ -62,21 +77,48 @@ namespace WordsWinformsApp
         }
         private void submitButton_Click(object sender, EventArgs e)
         {
-            if (inputBox.Text.ToLower() == rightAnswer)
+            try
             {
-                correctAnswers++;
-                resultLabel1.Text = "Correct!";
+                if (inputBox.Text.ToLower() == rightAnswer)
+                {
+                    correctAnswers++;
+                    resultLabel1.Text = "Correct!";
+                    resultLabel1.Visible = true;
+                }
+                else if (rightAnswer != null)
+                {
+                    wrongAnswers++;
+                    resultLabel1.Text = "Wrong!";
+                    resultLabel1.Visible = true;
+                }
             }
-            else
+            catch
             {
-                wrongAnswers++;
-                resultLabel1.Text = "Wrong!";
+                MessageBox.Show("Error: Incomplete list!\n" +
+                                 "Use 'Edit lists' under 'File' menu to add words.\n" +
+                                 "or select a different list!");
             }
+
             inputBox.Clear();
             inputBox.Focus();
-            rightWrongLabel.Text = $"Correct answers: {correctAnswers}. Wrong answers: {wrongAnswers}." +
-                $" ({Math.Round(correctAnswers / (correctAnswers + wrongAnswers), 1) * 100}% correct)";
-            Practice(practiceList.GetWordToPractice());
+
+            if (correctAnswers > 0 || wrongAnswers > 0)
+            {
+                rightWrongLabel.Text = $"Correct answers: {correctAnswers}. Wrong answers: {wrongAnswers}." +
+                    $" ({Math.Round(correctAnswers / (correctAnswers + wrongAnswers), 1) * 100}% correct)";
+                rightWrongLabel.Visible = true;
+            }
+
+            try
+            {
+                Practice(practiceList.GetWordToPractice());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error: Incomplete list!\n" +
+                                 "Use 'Edit lists' under 'File' menu to add words\n" +
+                                 "or select a different list!");
+            }
         }
         private void Practice(Word word)
         {

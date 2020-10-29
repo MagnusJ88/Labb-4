@@ -18,6 +18,7 @@ namespace WordLibrary
         }
         public static string[] GetLists()
         {
+            Directory.CreateDirectory(FilePath());
             DirectoryInfo listFolder = new DirectoryInfo(FilePath());
 
             FileInfo[] Files = listFolder.GetFiles("*.dat");
@@ -52,21 +53,28 @@ namespace WordLibrary
         }
         public void Save()
         {
-            Directory.CreateDirectory(FilePath());
-            var listName = Path.Combine(FilePath(), Name);
+            try
+            {
+                Directory.CreateDirectory(FilePath());
+                var listName = Path.Combine(FilePath(), Name);
 
-            File.WriteAllText(listName + ".dat", String.Empty);
-            foreach (var language in Languages)
-            {
-                File.AppendAllText(listName.ToLower() + ".dat", language.Trim().ToUpper() + ";");
-            }
-            foreach (Word word in Words)
-            {
-                File.AppendAllText(listName + ".dat", Environment.NewLine);
-                foreach (var translation in word.Translations)
+                File.WriteAllText(listName + ".dat", String.Empty);
+                foreach (var language in Languages)
                 {
-                    File.AppendAllText(listName + ".dat", translation.ToLower().Trim() + ";");
+                    File.AppendAllText(listName.ToLower() + ".dat", language.Trim().ToUpper() + ";");
                 }
+                foreach (Word word in Words)
+                {
+                    File.AppendAllText(listName + ".dat", Environment.NewLine);
+                    foreach (var translation in word.Translations)
+                    {
+                        File.AppendAllText(listName + ".dat", translation.ToLower().Trim() + ";");
+                    }
+                }
+            }
+            catch
+            {
+                throw new IOException();
             }
         }
         public void Add(params string[] translations)
