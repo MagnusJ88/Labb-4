@@ -28,7 +28,6 @@ namespace WordsConsoleApp
                         else
                         {
                             Console.WriteLine("There are no lists available!");
-                            PrintCommands();
                         }
                         break;
                     case "-new":
@@ -157,7 +156,14 @@ namespace WordsConsoleApp
                     }
                 }
             }
-            Save(newWordList);
+            if (Save(newWordList))
+            {
+                Console.WriteLine($"List {newWordList.Name} saved successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Save failed successfully!");
+            }
         }
         private static void Add(string[] args)
         {
@@ -198,21 +204,20 @@ namespace WordsConsoleApp
                     }
                 }
             }
-            if (counter > 0)
+            if (Save(addWordList))
             {
-                Save(addWordList);
                 Console.WriteLine($"Saved successfully! {counter} words were added to {addWordList.Name}.");
             }
             else
             {
                 Console.WriteLine($"No words were added to {addWordList.Name}!");
-                PrintCommands();
             }
         }
         private static void Remove(string[] args)
         {
             WordList removeList = WordList.LoadList(args[1]);
             int counter = 0;
+
             string[] wordsToRemove = args.Skip(3).ToArray();
             for (int i = 0; i < removeList.Languages.Length; i++)
             {
@@ -233,15 +238,13 @@ namespace WordsConsoleApp
                     break;
                 }
             }
-            if (counter > 0)
+            if (Save(removeList))
             {
-                Save(removeList);
                 Console.WriteLine($"Saved successfully! {counter} words were removed from {removeList.Name}.");
             }
             else
             {
                 Console.WriteLine($"No words were removed from {removeList.Name}!");
-                PrintCommands();
             }
         }
         private static void Practice(string[] args)
@@ -280,15 +283,15 @@ namespace WordsConsoleApp
         private static void PrintCommands()
         {
             Console.WriteLine("Use any of the following parameters:\n" +
-                                        "-lists\n" +
-                                        "-new <list name> <language 1> <language 2> .. <langauge n>\n" +
-                                        "-add <list name>\n" +
-                                        "-remove <list name> <language> <word 1> <word 2> .. <word n>\n" +
-                                        "-words <listname> <sortByLanguage>\n" +
-                                        "-count <listname>\n" +
-                                        "-practice <listname>");
+                                "-lists\n" +
+                                "-new <list name> <language 1> <language 2> .. <langauge n>\n" +
+                                "-add <list name>\n" +
+                                "-remove <list name> <language> <word 1> <word 2> .. <word n>\n" +
+                                "-words <listname> <sortByLanguage>\n" +
+                                "-count <listname>\n" +
+                                "-practice <listname>");
         }
-        private static void Save(WordList wordList)
+        private static bool Save(WordList wordList)
         {
             Console.WriteLine("Do you wish to save changes? <y/n>");
             string yesOrNo = Console.ReadLine();
@@ -296,17 +299,18 @@ namespace WordsConsoleApp
             {
                 case "y":
                     wordList.Save();
-                    Console.WriteLine($"Saved to {Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\World_of_Wordcraft"}");
-                    break;
+                    Console.WriteLine($"Saved to {Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}" +
+                                        "\\World_of_Wordcraft");
+                    return true;
                 default:
-                    break;
+                    return false;
             }
         }
         private static void showTranslations(string[] translations)
         {
             for (int i = 0; i < translations.Length; i++)
             {
-                Console.Write($"{ translations[i],-10 }");
+                Console.Write($"{ translations[i], -10 }");
             }
             Console.WriteLine();
         }

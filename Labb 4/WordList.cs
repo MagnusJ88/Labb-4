@@ -10,7 +10,6 @@ namespace WordLibrary
         public string Name { get; }
         public string[] Languages { get; }
         private List<Word> Words = new List<Word>();
-        private Random random = new Random();
         public WordList(string name, params string[] languages)
         {
             Name = name;
@@ -20,13 +19,14 @@ namespace WordLibrary
         {
             Directory.CreateDirectory(FilePath());
             DirectoryInfo listFolder = new DirectoryInfo(FilePath());
-
             FileInfo[] Files = listFolder.GetFiles("*.dat");
+
             string[] allFiles = new string[Files.Length];
             for (int i = 0; i < Files.Length; i++)
             {
                 allFiles[i] = Path.GetFileNameWithoutExtension(Files[i].Name);
             }
+
             return allFiles;
         }
         public static WordList LoadList(string name)
@@ -91,15 +91,23 @@ namespace WordLibrary
         public bool Remove(int translation, string word)
         {
             bool wasRemoved = false;
-            for (int i = 0; i < Words.Count; i++)
+            try
             {
-                if (Words[i].Translations[translation] == word)
+                for (int i = 0; i < Words.Count; i++)
                 {
-                    Words.RemoveAt(i);
-                    wasRemoved = true;
-                    return wasRemoved;
+                    if (Words[i].Translations[translation] == word)
+                    {
+                        Words.RemoveAt(i);
+                        wasRemoved = true;
+                        return wasRemoved;
+                    }
                 }
             }
+            catch
+            {
+                throw new Exception();
+            }
+
             return wasRemoved;
         }
         public int Count()
@@ -116,6 +124,7 @@ namespace WordLibrary
         }
         public Word GetWordToPractice()
         {
+            Random random = new Random();
             if (Words.Count != 0 && Languages.Length != 0)
             {
                 int indexOfWord = random.Next(0, Words.Count);
@@ -127,6 +136,7 @@ namespace WordLibrary
                     toLanguage = Math.Abs(fromLanguage - 1);
                 }
                 Word wordToPractice = new Word(fromLanguage, toLanguage, Words[indexOfWord].Translations);
+
                 return wordToPractice;
             }
             else
