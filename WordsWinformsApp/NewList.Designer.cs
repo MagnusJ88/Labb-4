@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,6 +38,7 @@
             this.addButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.toolTipNew = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +57,7 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(135, 22);
             this.textBoxName.TabIndex = 0;
+            this.toolTipNew.SetToolTip(this.textBoxName, "Name of the list you wish to create");
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // label2
@@ -76,12 +79,14 @@
             this.languageTextBox.Name = "languageTextBox";
             this.languageTextBox.Size = new System.Drawing.Size(135, 267);
             this.languageTextBox.TabIndex = 1;
+            this.toolTipNew.SetToolTip(this.languageTextBox, "Add a language, one per row");
             // 
             // dataGridView1
             // 
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(174, 34);
             this.dataGridView1.Name = "dataGridView1";
@@ -99,6 +104,7 @@
             this.saveButton.Size = new System.Drawing.Size(136, 23);
             this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save new list";
+            this.toolTipNew.SetToolTip(this.saveButton, "Saves your new list to disk");
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
@@ -111,6 +117,7 @@
             this.addButton.Size = new System.Drawing.Size(136, 23);
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Add words";
+            this.toolTipNew.SetToolTip(this.addButton, "Klick to enable a datagrid which allows you to add words");
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
@@ -133,6 +140,7 @@
             this.cancelButton.Size = new System.Drawing.Size(136, 23);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
+            this.toolTipNew.SetToolTip(this.cancelButton, "Closes the window without saving changes");
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
@@ -171,5 +179,6 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.ToolTip toolTipNew;
     }
 }

@@ -46,7 +46,6 @@ namespace WordsWinformsApp
             dataGridView1.AllowUserToDeleteRows = true;
             dataGridView1.ReadOnly = false;
             editButton.Enabled = false;
-            deleteButton.Enabled = true;
             label2.Visible = true;
             label3.Visible = true;
         }
@@ -137,6 +136,21 @@ namespace WordsWinformsApp
             deleteButton.Enabled = false;
             label2.Visible = false;
             label3.Visible = false;
+        }
+        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0 && !editButton.Enabled)
+            {
+                deleteButton.Enabled = true;
+            }
+            else
+            {
+                deleteButton.Enabled = false;
+            }
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            deleteButton.Enabled = false;
         }
     }
 }

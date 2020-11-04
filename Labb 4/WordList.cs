@@ -68,7 +68,7 @@ namespace WordLibrary
                     File.AppendAllText(listName + ".dat", Environment.NewLine);
                     foreach (var translation in word.Translations)
                     {
-                        File.AppendAllText(listName + ".dat", translation.ToLower().Trim() + ";");
+                        File.AppendAllText(listName + ".dat", translation.ToLower().Trim().Replace(";", "") + ";");
                     }
                 }
             }
@@ -125,6 +125,7 @@ namespace WordLibrary
         public Word GetWordToPractice()
         {
             Random random = new Random();
+
             if (Words.Count != 0 && Languages.Length != 0)
             {
                 int indexOfWord = random.Next(0, Words.Count);

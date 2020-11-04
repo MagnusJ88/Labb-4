@@ -77,7 +77,7 @@ namespace WordsWinformsApp
                 {
                     if (dataGridView1.Rows[i].Cells[j].Value != null)
                     {
-                        translation[j] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        translation[j] = dataGridView1.Rows[i].Cells[j].Value.ToString().Replace(";","");
                         isNotNull = true;
                     }
                     else

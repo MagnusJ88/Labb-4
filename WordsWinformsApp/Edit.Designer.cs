@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.saveButton = new System.Windows.Forms.Button();
@@ -37,6 +38,7 @@
             this.deleteButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.toolTipEdit = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(197, 38);
             this.dataGridView1.Name = "dataGridView1";
@@ -74,6 +76,8 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(773, 382);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             // 
             // saveButton
             // 
@@ -87,6 +91,7 @@
             this.saveButton.Size = new System.Drawing.Size(75, 35);
             this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save";
+            this.toolTipEdit.SetToolTip(this.saveButton, "Saves changes to disk");
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
@@ -102,6 +107,7 @@
             this.editButton.Size = new System.Drawing.Size(75, 35);
             this.editButton.TabIndex = 2;
             this.editButton.Text = "Edit";
+            this.toolTipEdit.SetToolTip(this.editButton, "Enables editing on your chosen list");
             this.editButton.UseVisualStyleBackColor = false;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
@@ -141,6 +147,7 @@
             this.deleteButton.Size = new System.Drawing.Size(103, 35);
             this.deleteButton.TabIndex = 5;
             this.deleteButton.Text = "Delete row";
+            this.toolTipEdit.SetToolTip(this.deleteButton, "Select a row by clicking row header");
             this.deleteButton.UseVisualStyleBackColor = false;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
@@ -167,6 +174,7 @@
             this.cancelButton.Size = new System.Drawing.Size(88, 35);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Close";
+            this.toolTipEdit.SetToolTip(this.cancelButton, "Closes window without saving changes");
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
@@ -207,5 +215,6 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.ToolTip toolTipEdit;
     }
 }
