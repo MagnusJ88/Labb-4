@@ -4,25 +4,25 @@ using WordLibrary;
 
 namespace WordsWinformsApp
 {
-    public partial class Form1 : Form
+    public partial class WorldOfWordcraft : Form
     {
         private WordList practiceList;
         private decimal correctAnswers = 0m, wrongAnswers = 0m;
         private string rightAnswer;
-        public Form1()
+        public WorldOfWordcraft()
         {
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void WorldOfWordcraft_Load(object sender, EventArgs e)
         {
             foreach (string list in WordList.GetLists())
             {
-                listBox1.Items.Add(list);
+                listBoxLists.Items.Add(list);
             }
         }
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxLists_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            if (listBoxLists.SelectedItem != null)
             {
                 practiceButton.Enabled = true;
                 inputBox.Enabled = false;
@@ -34,7 +34,7 @@ namespace WordsWinformsApp
                 wrongAnswers = 0m;
             }
         }
-        private void practiceButton_Click(object sender, EventArgs e)
+        private void PracticeButton_Click(object sender, EventArgs e)
         {
             groupBox1.Visible = true;
             practiceButton.Enabled = false;
@@ -43,19 +43,17 @@ namespace WordsWinformsApp
 
             try
             {
-                practiceList = WordList.LoadList(listBox1.SelectedItem.ToString());
+                practiceList = WordList.LoadList(listBoxLists.SelectedItem.ToString());
                 Practice(practiceList.GetWordToPractice());
             }
             catch
             {
-                MessageBox.Show("Error: incomplete list!\n" +
-                                "Use 'Edit lists' under 'File' menu to add words\n" +
-                                "or select a different list!");
+                IncompleteList();
                 practiceButton.Enabled = false;
                 inputBox.Enabled = false;
             }
         }
-        private void inputBox_TextChanged(object sender, EventArgs e)
+        private void InputBox_TextChanged(object sender, EventArgs e)
         {
             if (inputBox.Text.Length != 0)
             {
@@ -66,7 +64,7 @@ namespace WordsWinformsApp
                 submitButton.Enabled = false;
             }
         }
-        private void inputBox_KeyDown(object sender, KeyEventArgs e)
+        private void InputBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -75,7 +73,7 @@ namespace WordsWinformsApp
                 e.Handled = true;
             }
         }
-        private void submitButton_Click(object sender, EventArgs e)
+        private void SubmitButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -94,9 +92,7 @@ namespace WordsWinformsApp
             }
             catch
             {
-                MessageBox.Show("Error: Incomplete list!\n" +
-                                 "Use 'Edit lists' under 'File' menu to add words.\n" +
-                                 "or select a different list!");
+                IncompleteList();
             }
 
             inputBox.Clear();
@@ -115,9 +111,7 @@ namespace WordsWinformsApp
             }
             catch (Exception)
             {
-                MessageBox.Show("Error: Incomplete list!\n" +
-                                 "Use 'Edit lists' under 'File' menu to add words\n" +
-                                 "or select a different list!");
+                IncompleteList();
             }
         }
         private void Practice(Word word)
@@ -126,24 +120,30 @@ namespace WordsWinformsApp
             toLanguageBox.Text = practiceList.Languages[word.ToLanguage].ToLower();
             rightAnswer = word.Translations[word.ToLanguage];
         }
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Edit loadForm = new Edit();
             loadForm.ShowDialog();
         }
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (NewList newForm = new NewList())
             {
                 if (newForm.ShowDialog() == DialogResult.OK)
                 {
-                    listBox1.Items.Clear();
+                    listBoxLists.Items.Clear();
                     foreach (string list in WordList.GetLists())
                     {
-                        listBox1.Items.Add(list);
+                        listBoxLists.Items.Add(list);
                     }
                 }
             }
+        }
+        private void IncompleteList()
+        {
+            MessageBox.Show("Error: Incomplete list!\n" +
+                                 "Use \"Edit lists\" under \"File\" menu to add words to an existing list\n" +
+                                 "or \"New list\" to create a new list!");
         }
     }
 }

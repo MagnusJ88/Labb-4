@@ -17,7 +17,7 @@ namespace WordsWinformsApp
             dataGridView1.Visible = false;
             textBoxName.Focus();
         }
-        private void textBoxName_TextChanged(object sender, EventArgs e)
+        private void TextBoxName_TextChanged(object sender, EventArgs e)
         {
             if (WordList.GetLists().Contains(textBoxName.Text.ToLower()) || textBoxName.Text.Length == 0)
             {
@@ -30,7 +30,7 @@ namespace WordsWinformsApp
                 languageTextBox.Enabled = true;
             }
         }
-        private void addButton_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
             addButton.Enabled = false;
@@ -38,28 +38,41 @@ namespace WordsWinformsApp
             languageTextBox.ReadOnly = true;
             textBoxName.ReadOnly = true;
 
-            string[] languages = languageTextBox.Text.Split(new[] { Environment.NewLine },
-                        StringSplitOptions.RemoveEmptyEntries);
-
-            if (languages.Length > 1)
+            if (languageTextBox.Text.Contains(";") || textBoxName.Text.Contains(";"))
             {
-                foreach (string word in languages)
-                {
-                    dataGridView1.Columns.Add(word, word);
-                }
-                dataGridView1.Visible = true;
-                saveButton.Enabled = true;
-            }
-            else
-            {
-                MessageBox.Show("You must add two or more languages to the textbox on the left " +
-                                "(separated by new lines)");
+                MessageBox.Show("Invalid character detected!\n" +
+                    "Please remove all occurences of the semi-colon (\";\") character!");
                 addButton.Enabled = true;
                 saveButton.Enabled = false;
                 languageTextBox.ReadOnly = false;
+                languageTextBox.Focus();
+            }
+            else
+            {
+                string[] languages = languageTextBox.Text.Split(new[] { Environment.NewLine },
+                            StringSplitOptions.RemoveEmptyEntries);
+
+                if (languages.Length > 1)
+                {
+                    foreach (string word in languages)
+                    {
+                        dataGridView1.Columns.Add(word, word);
+                    }
+                    dataGridView1.Visible = true;
+                    saveButton.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("You must add two or more languages to the textbox on the left " +
+                                    "(separated by new lines)");
+                    addButton.Enabled = true;
+                    saveButton.Enabled = false;
+                    languageTextBox.ReadOnly = false;
+                    languageTextBox.Focus();
+                }
             }
         }
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ReadOnly = true;
@@ -77,7 +90,7 @@ namespace WordsWinformsApp
                 {
                     if (dataGridView1.Rows[i].Cells[j].Value != null)
                     {
-                        translation[j] = dataGridView1.Rows[i].Cells[j].Value.ToString().Replace(";","");
+                        translation[j] = dataGridView1.Rows[i].Cells[j].Value.ToString().Replace(";", "");
                         isNotNull = true;
                     }
                     else
@@ -102,7 +115,7 @@ namespace WordsWinformsApp
                 MessageBox.Show("Save failed!");
             }
         }
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }

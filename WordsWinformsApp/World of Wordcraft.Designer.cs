@@ -1,6 +1,6 @@
 ﻿namespace WordsWinformsApp
 {
-    partial class Form1
+    partial class WorldOfWordcraft
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.practiceButton = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxLists = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rightWrongLabel = new System.Windows.Forms.Label();
@@ -80,18 +80,18 @@
             this.loadToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.loadToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.loadToolStripMenuItem.Text = "Edit lists";
-            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.newToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.newToolStripMenuItem.Text = "New list";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.NewListToolStripMenuItem_Click);
             // 
             // practiceButton
             // 
@@ -107,22 +107,22 @@
             this.practiceButton.Text = "Practice";
             this.toolTipWoW.SetToolTip(this.practiceButton, "Click to start practice!");
             this.practiceButton.UseVisualStyleBackColor = false;
-            this.practiceButton.Click += new System.EventHandler(this.practiceButton_Click);
+            this.practiceButton.Click += new System.EventHandler(this.PracticeButton_Click);
             // 
-            // listBox1
+            // listBoxLists
             // 
-            this.listBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(17, 50);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(153, 166);
-            this.listBox1.TabIndex = 2;
-            this.toolTipWoW.SetToolTip(this.listBox1, "Click to select the list you wish to practice with");
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxLists.BackColor = System.Drawing.SystemColors.Control;
+            this.listBoxLists.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxLists.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.listBoxLists.FormattingEnabled = true;
+            this.listBoxLists.ItemHeight = 18;
+            this.listBoxLists.Location = new System.Drawing.Point(17, 50);
+            this.listBoxLists.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.listBoxLists.Name = "listBoxLists";
+            this.listBoxLists.Size = new System.Drawing.Size(153, 166);
+            this.listBoxLists.TabIndex = 2;
+            this.toolTipWoW.SetToolTip(this.listBoxLists, "Click to select the list you wish to practice with");
+            this.listBoxLists.SelectedIndexChanged += new System.EventHandler(this.ListBoxLists_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -205,7 +205,7 @@
             this.submitButton.TabIndex = 5;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = false;
-            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
+            this.submitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // inputBox
             // 
@@ -216,8 +216,8 @@
             this.inputBox.Name = "inputBox";
             this.inputBox.Size = new System.Drawing.Size(193, 24);
             this.inputBox.TabIndex = 4;
-            this.inputBox.TextChanged += new System.EventHandler(this.inputBox_TextChanged);
-            this.inputBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputBox_KeyDown);
+            this.inputBox.TextChanged += new System.EventHandler(this.InputBox_TextChanged);
+            this.inputBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputBox_KeyDown);
             // 
             // toLanguageBox
             // 
@@ -264,7 +264,7 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Translate ";
             // 
-            // Form1
+            // WorldOfWordcraft
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -272,7 +272,7 @@
             this.ClientSize = new System.Drawing.Size(1005, 240);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxLists);
             this.Controls.Add(this.practiceButton);
             this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -280,9 +280,9 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1023, 287);
-            this.Name = "Form1";
+            this.Name = "WorldOfWordcraft";
             this.Text = "World of Wordcraft";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.WorldOfWordcraft_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -299,7 +299,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.Button practiceButton;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxLists;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;

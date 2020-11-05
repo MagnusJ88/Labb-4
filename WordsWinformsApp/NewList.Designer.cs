@@ -58,7 +58,7 @@
             this.textBoxName.Size = new System.Drawing.Size(135, 22);
             this.textBoxName.TabIndex = 0;
             this.toolTipNew.SetToolTip(this.textBoxName, "Name of the list you wish to create");
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
+            this.textBoxName.TextChanged += new System.EventHandler(this.TextBoxName_TextChanged);
             // 
             // label2
             // 
@@ -106,7 +106,7 @@
             this.saveButton.Text = "Save new list";
             this.toolTipNew.SetToolTip(this.saveButton, "Saves your new list to disk");
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // addButton
             // 
@@ -119,7 +119,7 @@
             this.addButton.Text = "Add words";
             this.toolTipNew.SetToolTip(this.addButton, "Klick to enable a datagrid which allows you to add words");
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // label3
             // 
@@ -142,7 +142,7 @@
             this.cancelButton.Text = "Cancel";
             this.toolTipNew.SetToolTip(this.cancelButton, "Closes the window without saving changes");
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // NewList
             // 

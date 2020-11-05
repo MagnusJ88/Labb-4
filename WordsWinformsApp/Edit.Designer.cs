@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.listBox = new System.Windows.Forms.ListBox();
+            this.dataGridViewWords = new System.Windows.Forms.DataGridView();
             this.saveButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,45 +39,45 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.toolTipEdit = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWords)).BeginInit();
             this.SuspendLayout();
             // 
-            // listBox1
+            // listBox
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(12, 38);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(179, 382);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox.BackColor = System.Drawing.SystemColors.Control;
+            this.listBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.listBox.FormattingEnabled = true;
+            this.listBox.ItemHeight = 18;
+            this.listBox.Location = new System.Drawing.Point(12, 38);
+            this.listBox.Name = "listBox";
+            this.listBox.Size = new System.Drawing.Size(179, 382);
+            this.listBox.TabIndex = 0;
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
             // 
-            // dataGridView1
+            // dataGridViewWords
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewWords.AllowUserToAddRows = false;
+            this.dataGridViewWords.AllowUserToDeleteRows = false;
+            this.dataGridViewWords.AllowUserToOrderColumns = true;
+            this.dataGridViewWords.AllowUserToResizeColumns = false;
+            this.dataGridViewWords.AllowUserToResizeRows = false;
+            this.dataGridViewWords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(197, 38);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(773, 382);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
+            this.dataGridViewWords.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewWords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewWords.Location = new System.Drawing.Point(197, 38);
+            this.dataGridViewWords.Name = "dataGridViewWords";
+            this.dataGridViewWords.ReadOnly = true;
+            this.dataGridViewWords.RowHeadersWidth = 51;
+            this.dataGridViewWords.RowTemplate.Height = 24;
+            this.dataGridViewWords.Size = new System.Drawing.Size(773, 382);
+            this.dataGridViewWords.TabIndex = 1;
+            this.dataGridViewWords.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewWords_CellClick);
+            this.dataGridViewWords.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewWords_RowHeaderMouseClick);
             // 
             // saveButton
             // 
@@ -93,7 +93,7 @@
             this.saveButton.Text = "Save";
             this.toolTipEdit.SetToolTip(this.saveButton, "Saves changes to disk");
             this.saveButton.UseVisualStyleBackColor = false;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // editButton
             // 
@@ -109,7 +109,7 @@
             this.editButton.Text = "Edit";
             this.toolTipEdit.SetToolTip(this.editButton, "Enables editing on your chosen list");
             this.editButton.UseVisualStyleBackColor = false;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            this.editButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // label1
             // 
@@ -149,7 +149,7 @@
             this.deleteButton.Text = "Delete row";
             this.toolTipEdit.SetToolTip(this.deleteButton, "Select a row by clicking row header");
             this.deleteButton.UseVisualStyleBackColor = false;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // label3
             // 
@@ -176,7 +176,7 @@
             this.cancelButton.Text = "Close";
             this.toolTipEdit.SetToolTip(this.cancelButton, "Closes window without saving changes");
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.closeButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // Edit
             // 
@@ -191,14 +191,14 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.dataGridViewWords);
+            this.Controls.Add(this.listBox);
             this.MinimumSize = new System.Drawing.Size(1000, 520);
             this.Name = "Edit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit lists";
             this.Load += new System.EventHandler(this.Load_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWords)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,8 +206,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.DataGridView dataGridViewWords;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Label label1;

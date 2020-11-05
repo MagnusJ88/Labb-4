@@ -15,60 +15,60 @@ namespace WordsWinformsApp
         {
             foreach (string list in WordList.GetLists())
             {
-                listBox1.Items.Add(list);
+                listBox.Items.Add(list);
             }
         }
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             MakeFormReadOnly();
 
-            if (listBox1.SelectedItem != null)
+            if (listBox.SelectedItem != null)
             {
                 editButton.Enabled = true;
-                WordList loadedList = WordList.LoadList(listBox1.SelectedItem.ToString());
-                dataGridView1.Columns.Clear();
+                WordList loadedList = WordList.LoadList(listBox.SelectedItem.ToString());
+                dataGridViewWords.Columns.Clear();
                 foreach (var language in loadedList.Languages)
                 {
-                    dataGridView1.Columns.Add(language, language);
+                    dataGridViewWords.Columns.Add(language, language);
                 }
-                Action<string[]> action = new Action<string[]>(showTranslations);
+                Action<string[]> action = new Action<string[]>(ShowTranslations);
                 loadedList.List(0, action);
             }
         }
-        private void showTranslations(String[] translations)
+        private void ShowTranslations(string[] translations)
         {
-            dataGridView1.Rows.Add(translations);
+            dataGridViewWords.Rows.Add(translations);
         }
-        private void editButton_Click(object sender, EventArgs e)
+        private void EditButton_Click(object sender, EventArgs e)
         {
             saveButton.Enabled = true;
-            dataGridView1.AllowUserToAddRows = true;
-            dataGridView1.AllowUserToDeleteRows = true;
-            dataGridView1.ReadOnly = false;
+            dataGridViewWords.AllowUserToAddRows = true;
+            dataGridViewWords.AllowUserToDeleteRows = true;
+            dataGridViewWords.ReadOnly = false;
             editButton.Enabled = false;
             label2.Visible = true;
             label3.Visible = true;
         }
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             MakeFormReadOnly();
 
-            string[] languages = new string[dataGridView1.Columns.Count];
-            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            string[] languages = new string[dataGridViewWords.Columns.Count];
+            for (int i = 0; i < dataGridViewWords.Columns.Count; i++)
             {
-                languages[i] = dataGridView1.Columns[i].HeaderText;
+                languages[i] = dataGridViewWords.Columns[i].HeaderText;
             }
 
             bool isNotNull = true;
             List<string[]> translationsList = new List<string[]>();
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < dataGridViewWords.Rows.Count; i++)
             {
-                string[] translation = new string[dataGridView1.Columns.Count];
-                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                string[] translation = new string[dataGridViewWords.Columns.Count];
+                for (int j = 0; j < dataGridViewWords.Columns.Count; j++)
                 {
-                    if (dataGridView1.Rows[i].Cells[j].Value != null)
+                    if (dataGridViewWords.Rows[i].Cells[j].Value != null)
                     {
-                        translation[j] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        translation[j] = dataGridViewWords.Rows[i].Cells[j].Value.ToString().Replace(";", "");
                         isNotNull = true;
                     }
                     else
@@ -85,7 +85,7 @@ namespace WordsWinformsApp
                 }
             }
 
-            WordList saveList = new WordList(listBox1.SelectedItem.ToString(), languages);
+            WordList saveList = new WordList(listBox.SelectedItem.ToString(), languages);
             foreach (var translation in translationsList)
             {
                 saveList.Add(translation);
@@ -100,15 +100,15 @@ namespace WordsWinformsApp
                 MessageBox.Show("Save failed");
             }
         }
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count != 0)
+            if (dataGridViewWords.SelectedRows.Count != 0)
             {
                 try
                 {
-                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    foreach (DataGridViewRow row in dataGridViewWords.SelectedRows)
                     {
-                        dataGridView1.Rows.Remove(row);
+                        dataGridViewWords.Rows.Remove(row);
                     }
                 }
                 catch
@@ -122,24 +122,24 @@ namespace WordsWinformsApp
                     "otherwise deletion will not occur!");
             }
         }
-        private void closeButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();
         }
         private void MakeFormReadOnly()
         {
-            dataGridView1.ReadOnly = true;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewWords.ReadOnly = true;
+            dataGridViewWords.AllowUserToAddRows = false;
+            dataGridViewWords.AllowUserToDeleteRows = false;
             editButton.Enabled = true;
             saveButton.Enabled = false;
             deleteButton.Enabled = false;
             label2.Visible = false;
             label3.Visible = false;
         }
-        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGridViewWords_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0 && !editButton.Enabled)
+            if (dataGridViewWords.SelectedRows.Count > 0 && !editButton.Enabled)
             {
                 deleteButton.Enabled = true;
             }
@@ -148,7 +148,7 @@ namespace WordsWinformsApp
                 deleteButton.Enabled = false;
             }
         }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewWords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             deleteButton.Enabled = false;
         }
