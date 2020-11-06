@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WordsWinformsApp.Properties
+namespace WorldOfWordcraftWinformsApp.Properties
 {
 
 

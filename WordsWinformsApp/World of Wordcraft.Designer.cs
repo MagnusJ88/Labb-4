@@ -1,4 +1,4 @@
-﻿namespace WordsWinformsApp
+﻿namespace WorldOfWordcraftWinformsApp
 {
     partial class WorldOfWordcraft
     {
@@ -204,6 +204,7 @@
             this.submitButton.Size = new System.Drawing.Size(96, 32);
             this.submitButton.TabIndex = 5;
             this.submitButton.Text = "Submit";
+            this.toolTipWoW.SetToolTip(this.submitButton, "Click to see if your guess was correct!");
             this.submitButton.UseVisualStyleBackColor = false;
             this.submitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
@@ -216,6 +217,7 @@
             this.inputBox.Name = "inputBox";
             this.inputBox.Size = new System.Drawing.Size(193, 24);
             this.inputBox.TabIndex = 4;
+            this.toolTipWoW.SetToolTip(this.inputBox, "Enter the word you think is correct here!");
             this.inputBox.TextChanged += new System.EventHandler(this.InputBox_TextChanged);
             this.inputBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputBox_KeyDown);
             // 

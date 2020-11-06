@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using WordLibrary;
 
-namespace WordsWinformsApp
+namespace WorldOfWordcraftWinformsApp
 {
     public partial class NewList : Form
     {
@@ -26,8 +26,18 @@ namespace WordsWinformsApp
             }
             else
             {
-                addButton.Enabled = true;
-                languageTextBox.Enabled = true;
+                if (textBoxName.Text.Contains(";"))
+                {
+                    MessageBox.Show("Invalid character detected!");
+                    textBoxName.Clear();
+                    addButton.Enabled = false;
+                    languageTextBox.Enabled = false;
+                }
+                else
+                {
+                    addButton.Enabled = true;
+                    languageTextBox.Enabled = true;
+                }
             }
         }
         private void AddButton_Click(object sender, EventArgs e)
@@ -38,7 +48,7 @@ namespace WordsWinformsApp
             languageTextBox.ReadOnly = true;
             textBoxName.ReadOnly = true;
 
-            if (languageTextBox.Text.Contains(";") || textBoxName.Text.Contains(";"))
+            if (languageTextBox.Text.Contains(";"))
             {
                 MessageBox.Show("Invalid character detected!\n" +
                     "Please remove all occurences of the semi-colon (\";\") character!");
@@ -95,7 +105,7 @@ namespace WordsWinformsApp
                     }
                     else
                     {
-                        MessageBox.Show("All cells in a row must have a value or you can not save changes!");
+                        MessageBox.Show("All cells in a row must have a value or the translation can not be saved!");
                         isNotNull = false;
                         break;
                     }

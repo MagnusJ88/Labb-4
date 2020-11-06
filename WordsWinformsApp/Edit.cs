@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using WordLibrary;
 
-namespace WordsWinformsApp
+namespace WorldOfWordcraftWinformsApp
 {
     public partial class Edit : Form
     {

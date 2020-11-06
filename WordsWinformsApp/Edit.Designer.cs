@@ -1,4 +1,4 @@
-﻿namespace WordsWinformsApp
+﻿namespace WorldOfWordcraftWinformsApp
 {
     partial class Edit
     {

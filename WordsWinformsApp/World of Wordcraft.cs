@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using WordLibrary;
 
-namespace WordsWinformsApp
+namespace WorldOfWordcraftWinformsApp
 {
     public partial class WorldOfWordcraft : Form
     {
@@ -122,8 +122,10 @@ namespace WordsWinformsApp
         }
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Edit loadForm = new Edit();
-            loadForm.ShowDialog();
+            using (Edit editForm = new Edit())
+            {
+                editForm.ShowDialog();
+            }
         }
         private void NewListToolStripMenuItem_Click(object sender, EventArgs e)
         {

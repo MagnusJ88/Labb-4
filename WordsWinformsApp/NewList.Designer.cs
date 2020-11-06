@@ -1,4 +1,4 @@
-﻿namespace WordsWinformsApp
+﻿namespace WorldOfWordcraftWinformsApp
 {
     partial class NewList
     {
@@ -79,7 +79,8 @@
             this.languageTextBox.Name = "languageTextBox";
             this.languageTextBox.Size = new System.Drawing.Size(135, 267);
             this.languageTextBox.TabIndex = 1;
-            this.toolTipNew.SetToolTip(this.languageTextBox, "Add a language, one per row");
+            this.toolTipNew.SetToolTip(this.languageTextBox, "Add at least two languages, one per row. You can have as many languages as you wi" +
+        "sh.");
             // 
             // dataGridView1
             // 
@@ -94,6 +95,8 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(614, 404);
             this.dataGridView1.TabIndex = 5;
+            this.toolTipNew.SetToolTip(this.dataGridView1, "Make sure all cells for each row has a value, or the translations will not be add" +
+        "ed to the list!");
             // 
             // saveButton
             // 
@@ -104,7 +107,7 @@
             this.saveButton.Size = new System.Drawing.Size(136, 23);
             this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save new list";
-            this.toolTipNew.SetToolTip(this.saveButton, "Saves your new list to disk");
+            this.toolTipNew.SetToolTip(this.saveButton, "Saves your new list to disk and closes the window.");
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
@@ -117,7 +120,7 @@
             this.addButton.Size = new System.Drawing.Size(136, 23);
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Add words";
-            this.toolTipNew.SetToolTip(this.addButton, "Klick to enable a datagrid which allows you to add words");
+            this.toolTipNew.SetToolTip(this.addButton, "Click to enable a datagrid which allows you to add words");
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
@@ -140,7 +143,7 @@
             this.cancelButton.Size = new System.Drawing.Size(136, 23);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
-            this.toolTipNew.SetToolTip(this.cancelButton, "Closes the window without saving changes");
+            this.toolTipNew.SetToolTip(this.cancelButton, "Closes the window without saving changes.");
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
