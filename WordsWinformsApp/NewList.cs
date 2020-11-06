@@ -13,8 +13,8 @@ namespace WorldOfWordcraftWinformsApp
         }
         private void NewList_Load(object sender, EventArgs e)
         {
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Visible = false;
+            dataGridViewWords.ReadOnly = true;
+            dataGridViewWords.Visible = false;
             textBoxName.Focus();
         }
         private void TextBoxName_TextChanged(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace WorldOfWordcraftWinformsApp
         {
             label3.Visible = true;
             addButton.Enabled = false;
-            dataGridView1.ReadOnly = false;
+            dataGridViewWords.ReadOnly = false;
             languageTextBox.ReadOnly = true;
             textBoxName.ReadOnly = true;
 
@@ -66,9 +66,9 @@ namespace WorldOfWordcraftWinformsApp
                 {
                     foreach (string word in languages)
                     {
-                        dataGridView1.Columns.Add(word, word);
+                        dataGridViewWords.Columns.Add(word, word);
                     }
-                    dataGridView1.Visible = true;
+                    dataGridViewWords.Visible = true;
                     saveButton.Enabled = true;
                 }
                 else
@@ -84,8 +84,8 @@ namespace WorldOfWordcraftWinformsApp
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.ReadOnly = true;
+            dataGridViewWords.AllowUserToAddRows = false;
+            dataGridViewWords.ReadOnly = true;
 
             string[] languages = languageTextBox.Text.Split(new[] { Environment.NewLine },
                                 StringSplitOptions.RemoveEmptyEntries);
@@ -93,14 +93,14 @@ namespace WorldOfWordcraftWinformsApp
             WordList saveList = new WordList(textBoxName.Text, languages);
 
             bool isNotNull = true;
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < dataGridViewWords.Rows.Count; i++)
             {
-                string[] translation = new string[dataGridView1.Columns.Count];
-                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                string[] translation = new string[dataGridViewWords.Columns.Count];
+                for (int j = 0; j < dataGridViewWords.Columns.Count; j++)
                 {
-                    if (dataGridView1.Rows[i].Cells[j].Value != null)
+                    if (dataGridViewWords.Rows[i].Cells[j].Value != null)
                     {
-                        translation[j] = dataGridView1.Rows[i].Cells[j].Value.ToString().Replace(";", "");
+                        translation[j] = dataGridViewWords.Rows[i].Cells[j].Value.ToString().Replace(";", "-");
                         isNotNull = true;
                     }
                     else

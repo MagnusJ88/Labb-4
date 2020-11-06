@@ -33,13 +33,13 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.languageTextBox = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewWords = new System.Windows.Forms.DataGridView();
             this.saveButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.toolTipNew = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWords)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -82,20 +82,20 @@
             this.toolTipNew.SetToolTip(this.languageTextBox, "Add at least two languages, one per row. You can have as many languages as you wi" +
         "sh.");
             // 
-            // dataGridView1
+            // dataGridViewWords
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewWords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(174, 34);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(614, 404);
-            this.dataGridView1.TabIndex = 5;
-            this.toolTipNew.SetToolTip(this.dataGridView1, "Make sure all cells for each row has a value, or the translations will not be add" +
+            this.dataGridViewWords.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewWords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewWords.Location = new System.Drawing.Point(174, 34);
+            this.dataGridViewWords.Name = "dataGridViewWords";
+            this.dataGridViewWords.RowHeadersWidth = 51;
+            this.dataGridViewWords.RowTemplate.Height = 24;
+            this.dataGridViewWords.Size = new System.Drawing.Size(614, 404);
+            this.dataGridViewWords.TabIndex = 5;
+            this.toolTipNew.SetToolTip(this.dataGridViewWords, "Make sure all cells for each row has a value, or the translations will not be add" +
         "ed to the list!");
             // 
             // saveButton
@@ -156,7 +156,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewWords);
             this.Controls.Add(this.languageTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxName);
@@ -165,7 +165,7 @@
             this.Name = "NewList";
             this.Text = "New list";
             this.Load += new System.EventHandler(this.NewList_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWords)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,7 +177,7 @@
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox languageTextBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewWords;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label label3;

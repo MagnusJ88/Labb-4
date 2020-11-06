@@ -68,7 +68,8 @@ namespace WorldOfWordcraftWinformsApp
                 {
                     if (dataGridViewWords.Rows[i].Cells[j].Value != null)
                     {
-                        translation[j] = dataGridViewWords.Rows[i].Cells[j].Value.ToString().Replace(";", "");
+                        translation[j] = dataGridViewWords.Rows[i].Cells[j].Value.ToString().Replace(";", "-");
+                        
                         isNotNull = true;
                     }
                     else
